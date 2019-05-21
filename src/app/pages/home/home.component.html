@@ -1,3 +1,15 @@
-<p>
-  home works!
-</p>
+
+      <div class="row">
+          <div class="card m-4 custom-width" *ngFor="let section of userSections">
+              <div class="card-body unique-height">
+                <h5 class="card-title">{{ section.name }}</h5>
+                <!-- <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6> -->
+                <p class="card-text">{{ section.description }}</p>
+              </div>
+              <div class="card-footer">
+                <i class="fa fa-th-list ml-4 pull-right" aria-hidden="true" title="View availble {{ section.name }}"></i>
+                <i class="fa fa-plus pull-right" aria-hidden="true" title="Add {{ section.name }}" ></i>
+              </div>
+            </div>
+      
+      </div>

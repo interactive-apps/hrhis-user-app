@@ -1,0 +1,17 @@
+.unique-height {
+    height: 180px;
+}
+.custom-width {
+
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+@media (max-width: 990px) {
+    .custom-width {
+        width: 100% !important;
+    }
+  }
+  
