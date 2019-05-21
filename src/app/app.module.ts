@@ -14,6 +14,7 @@ import { effects } from './store/effects';
 import { SharedModule } from './shared/shared.module';
 import { pagesComponents } from './pages';
 
+
 @NgModule({
   declarations: [
     AppComponent,

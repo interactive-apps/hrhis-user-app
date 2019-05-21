@@ -1,0 +1,55 @@
+<div class="row w-100 mt-4">
+  <div class="row w-100 ml-2">
+    <div class="card w-100 mb-4">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>First name</th>
+                    <th>Surname</th>
+                    <th>Forms</th>
+                    <th>Organisationunit</th>
+                    <th>Actions</th>
+                  </tr>
+            </thead>
+            <tbody>
+             <tr *ngFor="let user of users">
+               <td> {{user.email}} </td>
+               <td> {{user.first_name}} </td>
+               <td> {{user.last_name}} </td>
+               <td> {{user.forms}} </td>
+               <td> {{user.organisationunit }} </td>
+               <td> 
+                  <div class="btn btn-primary w-25" title="View user information">
+                      <i class="fa fa-info w-100 d-flex justify-content-center" aria-hidden="true"></i>
+                  </div>
+
+                 <div class="btn btn-secondary w-25 mr-2 ml-2" title="Edit user information">
+                    <i class="fa fa-pencil w-100 d-flex justify-content-center" aria-hidden="true"></i>
+                 </div>
+
+                 <div class="btn btn-danger w-25" title="Delete user information">
+                    <i class="fa fa-times w-100 d-flex justify-content-center" aria-hidden="true"></i>
+                 </div>
+
+               </td>
+             </tr>
+            </tbody>
+          </table>
+
+
+      <!-- <table class="table table-bordered table-hover table-sm">
+        <thead class="thead thead-light">
+          <tr>
+            <th>Username</th>
+            <th>First name</th>
+            <th>Surname</th>
+            <th>Forms</th>
+            <th>Organisationunit</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+      </table> -->
+    </div>
+  </div>
+</div>
