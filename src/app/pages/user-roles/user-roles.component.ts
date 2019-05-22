@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { dummyUserroles } from 'src/assets/config/dummy-user-roles';
 
 @Component({
   selector: 'app-user-roles',
@@ -7,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserRolesComponent implements OnInit {
 
-  constructor() { }
+  dummyRoles: any;
+
+  constructor() {
+    this.dummyRoles = dummyUserroles;
+  }
 
   ngOnInit() {
   }

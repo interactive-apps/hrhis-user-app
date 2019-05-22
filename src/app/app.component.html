@@ -2,7 +2,6 @@
 <div class="container-fluid">
         <div class="row">
           <div class="col-sm-2">
-            
               <ul class="list-group mt-4">
                   <li class="list-group-item list-group-item-action"
                     *ngFor="let section of userSections"
@@ -10,12 +9,9 @@
                     {{ section.name }}
                   </li>
             </ul>
-      
           </div>
           <div class="col-sm-10">
-
                 <router-outlet></router-outlet>
-
           </div>
         </div>
       </div>
