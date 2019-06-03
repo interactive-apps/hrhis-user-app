@@ -9,6 +9,8 @@ import { dummyUserroles } from 'src/assets/config/dummy-user-roles';
 export class UserRolesComponent implements OnInit {
 
   dummyRoles: any;
+  page = 1;
+  pageItems = 4;
 
   constructor() {
     this.dummyRoles = dummyUserroles;

@@ -29,6 +29,7 @@
     "font-awesome": "^4.7.0",
     "jquery": "^3.4.1",
     "lodash": "^4.17.11",
+    "ngx-pagination": "^3.2.1",
     "ngx-pipes": "^2.5.0",
     "popper.js": "^1.15.0",
     "rxjs": "~6.3.3",

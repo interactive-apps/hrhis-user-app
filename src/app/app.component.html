@@ -5,6 +5,7 @@
               <ul class="list-group mt-4">
                   <li class="list-group-item list-group-item-action"
                     *ngFor="let section of userSections"
+                    [ngClass]="{'user-section-selected':section.id === 'userroles'}"
                     [routerLink]="'/' + section.id"> 
                     {{ section.name }}
                   </li>
