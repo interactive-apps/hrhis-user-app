@@ -1,15 +1,16 @@
 import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 import { PageState } from '../models/page-state.model';
 import { PageStateActions, PageStateActionTypes } from '../actions/page-state.actions';
-
 export interface State extends EntityState<PageState> {
   // additional entities state properties
+  currentSection: string;
 }
 
 export const adapter: EntityAdapter<PageState> = createEntityAdapter<PageState>();
 
 export const initialState: State = adapter.getInitialState({
   // additional entity state properties
+  currentSection: ''
 });
 
 export function reducer(
@@ -17,6 +18,11 @@ export function reducer(
   action: PageStateActions
 ): State {
   switch (action.type) {
+
+    case PageStateActionTypes.ToggoleSection: {
+      return {...state, currentSection: action.payload };
+    }
+
     case PageStateActionTypes.AddPageState: {
       return adapter.addOne(action.payload.pageState, state);
     }
@@ -69,3 +75,5 @@ export const {
   selectAll,
   selectTotal,
 } = adapter.getSelectors();
+
+export const getCurrentSectionState = (state: State) => state.currentSection;

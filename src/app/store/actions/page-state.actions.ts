@@ -3,6 +3,7 @@ import { Update } from '@ngrx/entity';
 import { PageState } from '../models/page-state.model';
 
 export enum PageStateActionTypes {
+  ToggoleSection = '[PageState] Toggole User Section',
   LoadPageStates = '[PageState] Load PageStates',
   AddPageState = '[PageState] Add PageState',
   UpsertPageState = '[PageState] Upsert PageState',
@@ -13,6 +14,12 @@ export enum PageStateActionTypes {
   DeletePageState = '[PageState] Delete PageState',
   DeletePageStates = '[PageState] Delete PageStates',
   ClearPageStates = '[PageState] Clear PageStates'
+}
+
+export class ToggoleSection implements Action {
+  readonly type = PageStateActionTypes.ToggoleSection;
+
+  constructor(public payload: any) {}
 }
 
 export class LoadPageStates implements Action {
@@ -83,4 +90,5 @@ export type PageStateActions =
  | UpdatePageStates
  | DeletePageState
  | DeletePageStates
+ | ToggoleSection
  | ClearPageStates;
