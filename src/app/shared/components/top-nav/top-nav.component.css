@@ -1,0 +1,39 @@
+.moh-header-holder {
+    display: inline-block;
+    text-align: center;
+    position: absolute;
+    width: 90%;
+}
+
+.moh-top-words {
+    font-size: larger;
+    
+}
+.moh-top-words-mobile {
+    display: none;
+}
+
+.moh-top-hrhis-words {
+    font-size: x-large;
+}
+
+@media (max-width: 990px) {
+    .navbar-brand-on-mobile {
+        display: block !important;
+    }
+    
+    .moh-header-holder {
+        display: none;
+        
+    }
+    .moh-top-words-mobile {
+        display: block !important;
+    }
+    .moh-top-words {
+        display: none;
+    }
+    
+    .moh-top-hrhis-words {
+        font-size: small;
+    }
+}
