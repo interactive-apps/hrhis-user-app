@@ -14,6 +14,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { effects } from './store/effects';
 import { SharedModule } from './shared/shared.module';
 import { pagesComponents } from './pages';
+import { NgPipesModule } from 'ngx-pipes';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { pagesComponents } from './pages';
     AppRoutingModule,
     SharedModule,
     NgxPaginationModule,
+    NgPipesModule,
     StoreModule.forRoot(reducers, { metaReducers }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     EffectsModule.forRoot(effects)
