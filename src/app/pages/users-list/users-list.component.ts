@@ -36,8 +36,4 @@ export class UsersListComponent implements OnInit {
     this.searchText = e ? e.target.value.trim() : this.searchText;
   }
 
-  addUser(e) {
-    
-  }
-
 }
