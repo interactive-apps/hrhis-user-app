@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-available-selected',
@@ -7,9 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AvailableSelectedComponent implements OnInit {
 
+  @Input() nameSpaceTitle: string;
+  @Input() availableItems: any;
+  @Input() selectedItems: any;
+  @Output() changesOnSelectedItems: any;
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onSelectedItemChanges(e) {
+    this.changesOnSelectedItems.emit(this.selectedItems);
   }
 
 }
