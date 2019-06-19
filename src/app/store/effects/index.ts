@@ -1,5 +1,9 @@
 import { PageStateEffects } from './page-state.effects';
+import { USerEffects } from './user.effects';
+import { UserRolesEffects } from './user-role.effects';
+import { UserGroupEffects } from './user-group.effects';
 
 export const effects: any[] = [
-    PageStateEffects
+    PageStateEffects, USerEffects,
+    UserRolesEffects, UserGroupEffects
 ];
