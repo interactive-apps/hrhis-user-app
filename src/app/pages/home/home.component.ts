@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { userSections } from 'src/assets/config/userSectionsConfig';
+import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
   selector: 'app-home',
@@ -10,8 +11,11 @@ export class HomeComponent implements OnInit {
 
   userSections: any;
 
-  constructor() {
+  constructor(private userService: UserService) {
     this.userSections = userSections;
+    this.userService.fetchUserSections().subscribe(response => {
+      console.log(JSON.stringify(response));
+    });
    }
 
   ngOnInit() {

@@ -11,7 +11,7 @@ export class UserService {
   // USer Service Functions
 
   fetchUserSections() {
-    const url = '../../assets/';
+    const url = './assets/config/userSections.json';
     return this.httpClient.get(url);
   }
 
