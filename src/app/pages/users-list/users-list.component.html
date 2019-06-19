@@ -22,7 +22,7 @@
                   </tr>
             </thead>
             <tbody>
-             <tr *ngFor="let user of (users |
+             <tr *ngFor="let user of ((users$ | async) |
              filterBy: ['email', 'first_name', 'last_name', 'forms', 'organisationunit'] : searchText |
              paginate: { itemsPerPage: itemsPerPage, currentPage: page})">
                <td> {{user.email}} </td>
@@ -54,7 +54,7 @@
                     [pageInterval]="itemsPerPage"
                     [pageIntervalFactor]="1"
                     [currentPage]="page"
-                    [dataArray]="users"
+                    [dataArray]="(users$ | async)"
                     (changeCurrentPage)="onCurrentPageUpdate($event)"
                     (updateItemsPerPage)="onUpdatePageSize($event)">
                   </app-pagination>

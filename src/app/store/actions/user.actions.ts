@@ -17,8 +17,6 @@ export enum UserActionTypes {
 
 export class LoadUsers implements Action {
   readonly type = UserActionTypes.LoadUsers;
-
-  constructor(public payload: { users: User[] }) {}
 }
 
 export class AddUser implements Action {
@@ -36,7 +34,7 @@ export class UpsertUser implements Action {
 export class AddUsers implements Action {
   readonly type = UserActionTypes.AddUsers;
 
-  constructor(public payload: { users: User[] }) {}
+  constructor(public payload: any) {}
 }
 
 export class UpsertUsers implements Action {

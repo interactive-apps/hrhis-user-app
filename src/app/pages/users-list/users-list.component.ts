@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { dummyUsers } from 'src/assets/config/dummy-users';
 import { FilterByPipe } from 'ngx-pipes';
+import { AppState } from 'src/app/store/reducers';
+import { Store } from '@ngrx/store';
+import { getUsersList } from 'src/app/store/selectors';
+import { Observable } from 'rxjs';
+import { LoadUsers } from 'src/app/store/actions';
 
 @Component({
   selector: 'app-users-list',
@@ -10,13 +15,14 @@ import { FilterByPipe } from 'ngx-pipes';
 })
 export class UsersListComponent implements OnInit {
 
-  users: any;
+  users$: Observable<any>;
   page = 1;
   itemsPerPage = 10;
   searchText = '';
 
-  constructor() {
-    this.users = dummyUsers;
+  constructor(private store: Store<AppState>) {
+    this.store.dispatch(new LoadUsers());
+    this.users$ = this.store.select(getUsersList);
    }
 
   ngOnInit() {}

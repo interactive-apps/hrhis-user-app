@@ -16,7 +16,7 @@ export class UserService {
   }
 
   fetchUsers() {
-    const url = '../../users/';
+    const url = './assets/config/users.json';
     return this.httpClient.get(url);
   }
 
