@@ -4,6 +4,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { UsersListComponent } from './pages/users-list/users-list.component';
 import { UserRolesComponent } from './pages/user-roles/user-roles.component';
 import { UserGroupsComponent } from './pages/user-groups/user-groups.component';
+import { AddUserComponent } from './pages/add-user/add-user.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,10 @@ const routes: Routes = [
   {
     path: 'users',
     component: UsersListComponent
+  },
+  {
+    path: 'users/addUser',
+    component: AddUserComponent
   },
   {
     path: 'userroles',

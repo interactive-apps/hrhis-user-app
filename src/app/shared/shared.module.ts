@@ -5,12 +5,14 @@ import { NgPipesModule } from 'ngx-pipes';
 import { FormsModule } from '@angular/forms';
 import { sharedComponents } from './components';
 import { services } from './services';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
     NgPipesModule,
+    NgxPaginationModule,
     FormsModule
   ],
   declarations: [

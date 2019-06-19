@@ -1,8 +1,9 @@
-<div class="row w-100 mt-4">
+<div class="row w-100 mt-4 mb-4">
 
   <div class="row w-25 ml-2 mb-2">
       <div class="input-group">
-          <input class="form-control py-2" placeholder="Search">
+          <input class="form-control py-2 border-top-0 border-right-0 border-left-0" placeholder="Search..."
+          (keyup)="searchingItems($event)">
           
       </div>
   </div>
@@ -20,7 +21,9 @@
                   </tr>
             </thead>
             <tbody>
-             <tr *ngFor="let role of dummyRoles | paginate: { itemsPerPage: pageItems, currentPage: page}">
+             <tr *ngFor="let role of (dummyRoles |
+             filterBy: ['name'] : searchText |
+             paginate: { itemsPerPage: itemsPerPage, currentPage: page})">
                <td> {{role.name}} </td>
                <td> {{role.description}} </td>
                <td> {{role.users}} </td>
@@ -41,15 +44,28 @@
                </td>
              </tr>
             </tbody>
-            <!-- <tfoot class="text-right">
-              <div class="row d-flex w-100">
-                  <div class="col align-self-end">
-                      <pagination-controls (pageChange)="page = $event"></pagination-controls>
-                  </div>
-              </div>
-
-            </tfoot> -->
+            <tfoot>
+              <tr>
+                <td [attr.colspan]="5">
+                  <app-pagination
+                    [itemsPerPage]="itemsPerPage"
+                    [pageInterval]="itemsPerPage"
+                    [pageIntervalFactor]="1"
+                    [currentPage]="page"
+                    [dataArray]="dummyRoles"
+                    (changeCurrentPage)="onCurrentPageUpdate($event)"
+                    (updateItemsPerPage)="onUpdatePageSize($event)">
+                  </app-pagination>
+                </td>
+              </tr>
+            </tfoot>
           </table>
     </div>
   </div>
+</div>
+
+<div class="right-corder-container">     
+  <button class="btn btn-primary right-corder-container-button" (click)="addUser($event)">         
+    <i class="fa fa-plus w-100 d-flex justify-content-center" aria-hidden="true" style="font-size: x-large"></i>   
+  </button> 
 </div>

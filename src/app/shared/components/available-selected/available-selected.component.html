@@ -1,0 +1,19 @@
+<div class="row w-100 mt-4">
+
+    <div class="col-sm">
+      <label>Available {{nameSpaceTitle ? nameSpaceTitle: ''}}</label>
+      <input type="text" class="form-control border-top-0 border-right-0 border-left-0"
+        placeholder="Search {{nameSpaceTitle ? nameSpaceTitle: ''}}">
+    <ul class="available-list">
+      <li class="list-group-item-action" *ngFor="let item of availableItems">{{ item.name }}</li>
+    </ul>
+    </div>
+
+    <div class="col-sm">
+        <label>Selected {{nameSpaceTitle ? nameSpaceTitle: ''}} *</label>
+      <ul class="available-list mt-4 pt-3">
+        <li class="list-group-item-action" *ngFor="let item of selectedItems">{{ item.name }}</li>
+      </ul>
+      </div>
+
+</div>

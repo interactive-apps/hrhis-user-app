@@ -10,13 +10,29 @@ export class UserRolesComponent implements OnInit {
 
   dummyRoles: any;
   page = 1;
-  pageItems = 4;
+  itemsPerPage = 10;
+  searchText = '';
 
   constructor() {
     this.dummyRoles = dummyUserroles;
   }
 
   ngOnInit() {
+  }
+
+  onUpdatePageSize(e) {
+    this.itemsPerPage = e;
+  }
+
+  onCurrentPageUpdate(e) {
+    this.page = e;
+  }
+
+  searchingItems(e) {
+    if (e) {
+      e.stopPropagation();
+    }
+    this.searchText = e ? e.target.value.trim() : this.searchText;
   }
 
 }
