@@ -4,13 +4,15 @@ import { PageStateActions, PageStateActionTypes } from '../actions/page-state.ac
 export interface State extends EntityState<PageState> {
   // additional entities state properties
   currentSection: string;
+  userSections: any;
 }
 
 export const adapter: EntityAdapter<PageState> = createEntityAdapter<PageState>();
 
 export const initialState: State = adapter.getInitialState({
   // additional entity state properties
-  currentSection: ''
+  currentSection: '',
+  userSections: []
 });
 
 export function reducer(
@@ -32,7 +34,7 @@ export function reducer(
     }
 
     case PageStateActionTypes.AddPageStates: {
-      return adapter.addMany(action.payload.pageStates, state);
+      return {...state, userSections: action.payload };
     }
 
     case PageStateActionTypes.UpsertPageStates: {
@@ -56,7 +58,7 @@ export function reducer(
     }
 
     case PageStateActionTypes.LoadPageStates: {
-      return adapter.addAll(action.payload.pageStates, state);
+      return state;
     }
 
     case PageStateActionTypes.ClearPageStates: {
@@ -77,3 +79,4 @@ export const {
 } = adapter.getSelectors();
 
 export const getCurrentSectionState = (state: State) => state.currentSection;
+export const getUserSectionsState = (state: State) => state.userSections;
