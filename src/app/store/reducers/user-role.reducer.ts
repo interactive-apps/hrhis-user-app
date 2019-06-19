@@ -4,12 +4,14 @@ import { UserRoleActions, UserRoleActionTypes } from '../actions/user-role.actio
 
 export interface State extends EntityState<UserRole> {
   // additional entities state properties
+  userRoles: any;
 }
 
 export const adapter: EntityAdapter<UserRole> = createEntityAdapter<UserRole>();
 
 export const initialState: State = adapter.getInitialState({
   // additional entity state properties
+  userRoles: []
 });
 
 export function reducer(
@@ -26,7 +28,7 @@ export function reducer(
     }
 
     case UserRoleActionTypes.AddUserRoles: {
-      return adapter.addMany(action.payload.userRoles, state);
+      return {...state, userRoles: action.payload };
     }
 
     case UserRoleActionTypes.UpsertUserRoles: {
@@ -50,7 +52,7 @@ export function reducer(
     }
 
     case UserRoleActionTypes.LoadUserRoles: {
-      return adapter.addAll(action.payload.userRoles, state);
+      return state;
     }
 
     case UserRoleActionTypes.ClearUserRoles: {
@@ -69,3 +71,5 @@ export const {
   selectAll,
   selectTotal,
 } = adapter.getSelectors();
+
+export const getUserRolesState = (state: State) => state.userRoles;

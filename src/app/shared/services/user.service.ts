@@ -35,6 +35,28 @@ export class UserService {
     return this.httpClient.delete(url);
   }
 
+  // USer Role Service Functions
+
+  fetchUserRoles() {
+    const url = './assets/config/userRoles.json';
+    return this.httpClient.get(url);
+  }
+
+  fetchUserRoleByUid(userRoleUid: string) {
+    const url = '../../userRole/' + userRoleUid;
+    return this.httpClient.get(url);
+  }
+
+  updateUserRoleByUid(userRoleUid: string, payload: any) {
+    const url = '../../userRole/' + userRoleUid;
+    return this.httpClient.post(url, payload);
+  }
+
+  deleteUserRoleByUid(userRoleUid: string) {
+    const url = '../../userRole/' + userRoleUid;
+    return this.httpClient.delete(url);
+  }
+
   // USer Group Service Functions
 
   fetchUserGroups() {
@@ -54,28 +76,6 @@ export class UserService {
 
   deleteUserGroupByUid(userGroupUid: string) {
     const url = '../../userGroup/' + userGroupUid;
-    return this.httpClient.delete(url);
-  }
-
-  // USer Role Service Functions
-
-  fetchUserRoles() {
-    const url = '../../userRole/';
-    return this.httpClient.get(url);
-  }
-
-  fetchUserRoleByUid(userRoleUid: string) {
-    const url = '../../userRole/' + userRoleUid;
-    return this.httpClient.get(url);
-  }
-
-  updateUserRoleByUid(userRoleUid: string, payload: any) {
-    const url = '../../userRole/' + userRoleUid;
-    return this.httpClient.post(url, payload);
-  }
-
-  deleteUserRoleByUid(userRoleUid: string) {
-    const url = '../../userRole/' + userRoleUid;
     return this.httpClient.delete(url);
   }
 

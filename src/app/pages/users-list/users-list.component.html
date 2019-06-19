@@ -55,6 +55,7 @@
                     [pageIntervalFactor]="1"
                     [currentPage]="page"
                     [dataArray]="(users$ | async)"
+                    [maxSize]="(users$ | async).length"
                     (changeCurrentPage)="onCurrentPageUpdate($event)"
                     (updateItemsPerPage)="onUpdatePageSize($event)">
                   </app-pagination>

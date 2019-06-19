@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { dummyUserroles } from 'src/assets/config/dummy-user-roles';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/store/reducers';
+import { getUserRolesList } from 'src/app/store/selectors';
+import { Observable } from 'rxjs';
+import { LoadUserRoles } from 'src/app/store/actions';
 
 @Component({
   selector: 'app-user-roles',
@@ -8,13 +13,14 @@ import { dummyUserroles } from 'src/assets/config/dummy-user-roles';
 })
 export class UserRolesComponent implements OnInit {
 
-  dummyRoles: any;
+  userRoles$: Observable<any>;
   page = 1;
   itemsPerPage = 10;
   searchText = '';
 
-  constructor() {
-    this.dummyRoles = dummyUserroles;
+  constructor(private store: Store<AppState>) {
+    this.store.dispatch(new LoadUserRoles());
+    this.userRoles$ = this.store.select(getUserRolesList);
   }
 
   ngOnInit() {
