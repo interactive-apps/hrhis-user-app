@@ -21,17 +21,22 @@ export class UserService {
   }
 
   fetchUserByUid(userUid: string) {
-    const url = '../../users/' + userUid;
+    const url = '../api/users/' + userUid;
     return this.httpClient.get(url);
   }
 
+  addUser(payload: any) {
+    const url = '../api/users';
+    return this.httpClient.post(url, payload);
+  }
+
   updateUserByUid(userUid: string, payload: any) {
-    const url = '../../users/' + userUid;
+    const url = '../api/users/' + userUid;
     return this.httpClient.post(url, payload);
   }
 
   deleteUserByUid(userUid: string) {
-    const url = '../../users/' + userUid;
+    const url = '../api/users/' + userUid;
     return this.httpClient.delete(url);
   }
 

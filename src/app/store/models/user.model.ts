@@ -3,6 +3,7 @@ export interface User {
 }
 
 export interface UserInfo {
+  id: string;
   firstname: string;
   middlename: string;
   surname: string;
@@ -16,6 +17,7 @@ export interface UserInfo {
 }
 
 export const InitUserInfo = {
+  id: '',
   firstname: '', middlename: '',
   surname: '', email: '',
   phone: '', username: '',
