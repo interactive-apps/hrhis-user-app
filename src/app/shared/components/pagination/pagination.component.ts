@@ -6,20 +6,17 @@ import * as fromPaginationHelpers from './pagination.helper';
   styleUrls: ['./pagination.component.css']
 })
 export class PaginationComponent implements OnInit {
-  @Input()
-  itemsPerPage;
+  @Input() itemsPerPage: any;
 
-  @Input()
-  currentPage;
+  @Input() currentPage: any;
 
-  @Input()
-  pageInterval;
+  @Input() pageInterval: any;
 
-  @Input()
-  pageIntervalFactor;
+  @Input() pageIntervalFactor: any;
 
-  @Input()
-  dataArray;
+  @Input() dataArray: any;
+
+  @Input() maxSize: any;
 
   @Output()
   updateItemsPerPage: EventEmitter<any> = new EventEmitter<any>();
@@ -27,14 +24,11 @@ export class PaginationComponent implements OnInit {
   @Output()
   changeCurrentPage: EventEmitter<any> = new EventEmitter<any>();
 
-  maxSize: any;
   pagingIntervals: any;
 
   constructor() {}
   ngOnInit() {
     if (this.dataArray) {
-      this.maxSize = this.dataArray.length;
-
       this.pagingIntervals = fromPaginationHelpers.generatePaginationEntryList(
         this.maxSize,
         this.pageIntervalFactor

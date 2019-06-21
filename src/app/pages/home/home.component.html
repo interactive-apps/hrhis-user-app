@@ -1,7 +1,7 @@
 
       <div class="row">
           <div class="card m-4 custom-width"
-          *ngFor="let section of userSections"
+          *ngFor="let section of (userSections$ | async)"
           [routerLink]="'/' + section.id">
               <div class="card-body unique-height">
                 <h5 class="card-title">{{ section.name }}</h5>

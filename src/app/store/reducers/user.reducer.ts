@@ -4,12 +4,16 @@ import { UserActions, UserActionTypes } from '../actions/user.actions';
 
 export interface State extends EntityState<User> {
   // additional entities state properties
+  users: any;
+  userInfoOnList: any;
 }
 
 export const adapter: EntityAdapter<User> = createEntityAdapter<User>();
 
 export const initialState: State = adapter.getInitialState({
   // additional entity state properties
+  users: [],
+  userInfoOnList: {}
 });
 
 export function reducer(
@@ -22,11 +26,11 @@ export function reducer(
     }
 
     case UserActionTypes.UpsertUser: {
-      return adapter.upsertOne(action.payload.user, state);
+      return {...state, userInfoOnList: action.payload};
     }
 
     case UserActionTypes.AddUsers: {
-      return adapter.addMany(action.payload.users, state);
+      return {...state, users: action.payload };
     }
 
     case UserActionTypes.UpsertUsers: {
@@ -50,7 +54,7 @@ export function reducer(
     }
 
     case UserActionTypes.LoadUsers: {
-      return adapter.addAll(action.payload.users, state);
+      return state;
     }
 
     case UserActionTypes.ClearUsers: {
@@ -69,3 +73,6 @@ export const {
   selectAll,
   selectTotal,
 } = adapter.getSelectors();
+
+export const getUsersListState = (state: State) => state.users;
+export const getUseronListInfoState = (state: State) => state.userInfoOnList;

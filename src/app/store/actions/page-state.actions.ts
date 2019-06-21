@@ -24,8 +24,6 @@ export class ToggoleSection implements Action {
 
 export class LoadPageStates implements Action {
   readonly type = PageStateActionTypes.LoadPageStates;
-
-  constructor(public payload: { pageStates: PageState[] }) {}
 }
 
 export class AddPageState implements Action {
@@ -43,7 +41,7 @@ export class UpsertPageState implements Action {
 export class AddPageStates implements Action {
   readonly type = PageStateActionTypes.AddPageStates;
 
-  constructor(public payload: { pageStates: PageState[] }) {}
+  constructor(public payload: any) {}
 }
 
 export class UpsertPageStates implements Action {

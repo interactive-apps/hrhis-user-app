@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { userSections } from 'src/assets/config/userSectionsConfig';
+import { UserService } from 'src/app/shared/services/user.service';
+import { AppState } from 'src/app/store/reducers';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { getUserSections } from 'src/app/store/selectors';
 
 @Component({
   selector: 'app-home',
@@ -8,10 +13,10 @@ import { userSections } from 'src/assets/config/userSectionsConfig';
 })
 export class HomeComponent implements OnInit {
 
-  userSections: any;
+  userSections$: Observable<any>;
 
-  constructor() {
-    this.userSections = userSections;
+  constructor(private store: Store<AppState>) {
+    this.userSections$ = this.store.select(getUserSections);
    }
 
   ngOnInit() {

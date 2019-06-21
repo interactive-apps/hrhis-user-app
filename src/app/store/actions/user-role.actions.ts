@@ -17,8 +17,6 @@ export enum UserRoleActionTypes {
 
 export class LoadUserRoles implements Action {
   readonly type = UserRoleActionTypes.LoadUserRoles;
-
-  constructor(public payload: { userRoles: UserRole[] }) {}
 }
 
 export class AddUserRole implements Action {
@@ -36,7 +34,7 @@ export class UpsertUserRole implements Action {
 export class AddUserRoles implements Action {
   readonly type = UserRoleActionTypes.AddUserRoles;
 
-  constructor(public payload: { userRoles: UserRole[] }) {}
+  constructor(public payload: any) {}
 }
 
 export class UpsertUserRoles implements Action {

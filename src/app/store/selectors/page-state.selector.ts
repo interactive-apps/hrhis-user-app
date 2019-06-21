@@ -11,3 +11,8 @@ export const getPageStateCurrentSelection = createSelector(
     getPageState,
     fromPageStateReducer.getCurrentSectionState
 );
+
+export const getUserSections = createSelector(
+    getPageState,
+    fromPageStateReducer.getUserSectionsState
+);

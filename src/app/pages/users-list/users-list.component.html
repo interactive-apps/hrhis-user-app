@@ -16,30 +16,31 @@
                     <th>Username</th>
                     <th>First name</th>
                     <th>Surname</th>
-                    <th>Forms</th>
+                    <th>Roles</th>
                     <th>Organisationunit</th>
                     <th>Actions</th>
                   </tr>
             </thead>
             <tbody>
-             <tr *ngFor="let user of (users |
-             filterBy: ['email', 'first_name', 'last_name', 'forms', 'organisationunit'] : searchText |
+             <tr *ngFor="let user of ((users$ | async) |
+             filterBy: ['email', 'firstname', 'surname', 'roles', 'organisationunit'] : searchText |
              paginate: { itemsPerPage: itemsPerPage, currentPage: page})">
                <td> {{user.email}} </td>
-               <td> {{user.first_name}} </td>
-               <td> {{user.last_name}} </td>
-               <td> {{user.forms}} </td>
+               <td> {{user.firstname}} </td>
+               <td> {{user.surname}} </td>
+               <td> {{user.roles}} </td>
                <td> {{user.organisationunit }} </td>
                <td> 
-                  <div class="btn btn-primary w-25" title="View user information">
+                  <div class="btn btn-primary w-25" title="View user information" (click)="editUser(user)">
                       <i class="fa fa-info w-100 d-flex justify-content-center" aria-hidden="true"></i>
                   </div>
 
-                 <div class="btn btn-secondary w-25 mr-2 ml-2" title="Edit user information">
+                 <div class="btn btn-secondary w-25 mr-2 ml-2" title="Edit user information"
+                 (click)="editUser(user)">
                     <i class="fa fa-pencil w-100 d-flex justify-content-center" aria-hidden="true"></i>
                  </div>
 
-                 <div class="btn btn-danger w-25" title="Delete user information">
+                 <div class="btn btn-danger w-25" title="Delete user information" (click)="deleteUser(user)">
                     <i class="fa fa-trash-o w-100 d-flex justify-content-center" aria-hidden="true"></i>
                  </div>
 
@@ -54,7 +55,8 @@
                     [pageInterval]="itemsPerPage"
                     [pageIntervalFactor]="1"
                     [currentPage]="page"
-                    [dataArray]="users"
+                    [dataArray]="(users$ | async)"
+                    [maxSize]="(users$ | async).length"
                     (changeCurrentPage)="onCurrentPageUpdate($event)"
                     (updateItemsPerPage)="onUpdatePageSize($event)">
                   </app-pagination>
@@ -71,3 +73,16 @@
     <i class="fa fa-plus w-100 d-flex justify-content-center" aria-hidden="true" style="font-size: x-large"></i>   
   </button> 
 </div>
+
+  <!-- Notification component -->
+  <div *ngIf="showNotificationPopup && showNotificationContents.notificationProperties">
+    <app-notification
+      [notificationProperties]="showNotificationContents.notificationProperties"
+      [isSuccessful]="showNotificationContents.isSuccessful"
+      [isError]="showNotificationContents.isError"
+      [isOffline]="showNotificationContents.isOffline"
+      [uploadOffline]="showNotificationContents.uploadOffline"
+      [showNotification]="showNotificationPopup"
+    ></app-notification>
+  </div>
+    <!-- End of Notification component -->

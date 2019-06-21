@@ -4,7 +4,7 @@
           <div class="col-sm-2">
               <ul class="list-group mt-4">
                   <li class="list-group-item list-group-item-action"
-                    *ngFor="let section of userSections"
+                    *ngFor="let section of (userSections$ | async)"
                     [ngClass]="{'user-section-selected':section.id === (currentSectionSelection$ | async)}"
                     [routerLink]="'/' + section.id"
                     (click)="toggoleSection(section.id)"> 

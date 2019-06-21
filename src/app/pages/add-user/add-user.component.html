@@ -4,47 +4,47 @@
       <div class="col">
         <div class="row mt-4">
           <input type="text" class="form-control border-top-0 border-right-0 border-left-0"
-          placeholder="Username *">
+          placeholder="Username *" title="Username" [(ngModel)]="userInfo.username">
         </div>
 
         <div class="row mt-4">
           <input type="text" class="form-control border-top-0 border-right-0 border-left-0"
-          placeholder="Email">
+          placeholder="Email" title="Email" [(ngModel)]="userInfo.email">
         </div>
 
         <div class="row mt-4">
           <input type="text" class="form-control border-top-0 border-right-0 border-left-0"
-          placeholder="Password *">
+          placeholder="Password *" title="Password" [(ngModel)]="userInfo.password">
         </div>
 
         <div class="row mt-4">
           <input type="text" class="form-control border-top-0 border-right-0 border-left-0"
-          placeholder="Repeat Password *">
+          placeholder="Repeat Password *" title="Repeat Password" [(ngModel)]="comfirmPassword" (change)="onchangeConfirmPassword($event)">
         </div>
 
         <div class="row mt-4">
           <input type="text" class="form-control border-top-0 border-right-0 border-left-0"
-          placeholder="Phone Number">
+          placeholder="Phone Number" title="Phone Number" [(ngModel)]="userInfo.phone">
         </div>
 
         <div class="row mt-4">
           <input type="text" class="form-control border-top-0 border-right-0 border-left-0"
-          placeholder="Job Title">
+          placeholder="Job Title" title="Job Title" [(ngModel)]="userInfo.jobtitle">
         </div>
 
         <div class="row mt-4">
           <input type="text" class="form-control border-top-0 border-right-0 border-left-0"
-          placeholder="first Name *">
+          placeholder="First Name *" title="First Name" [(ngModel)]="userInfo.firstname">
         </div>
 
         <div class="row mt-4">
           <input type="text" class="form-control border-top-0 border-right-0 border-left-0"
-          placeholder="middle Name">
+          placeholder="Middle Name" title="Middle Name" [(ngModel)]="userInfo.middlename">
         </div>
 
         <div class="row mt-4">
           <input type="text" class="form-control border-top-0 border-right-0 border-left-0"
-          placeholder="Sur Name *">
+          placeholder="Sur Name *" title="Sur Name" [(ngModel)]="userInfo.surname">
         </div>
 
         <div class="row mt-4">
@@ -59,11 +59,24 @@
         </div>
 
         <div class="row mt-4">
-          <div class="btn btn-primary">Save</div>
-          <div class="btn btn-light ml-4">Cancel</div>
+          <div class="btn btn-primary" (click)="saveUserInfo()">Save</div>
+          <div class="btn btn-light ml-4" [routerLink]="'/' + (currentSectionSelection$ | async)">Cancel</div>
         </div>
         
       </div>
     </div>
   </div>
 </div>
+
+  <!-- Notification component -->
+  <div *ngIf="showNotificationPopup && showNotificationContents.notificationProperties">
+    <app-notification
+      [notificationProperties]="showNotificationContents.notificationProperties"
+      [isSuccessful]="showNotificationContents.isSuccessful"
+      [isError]="showNotificationContents.isError"
+      [isOffline]="showNotificationContents.isOffline"
+      [uploadOffline]="showNotificationContents.uploadOffline"
+      [showNotification]="showNotificationPopup"
+    ></app-notification>
+  </div>
+    <!-- End of Notification component -->
