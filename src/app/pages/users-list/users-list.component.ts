@@ -5,7 +5,7 @@ import { AppState } from 'src/app/store/reducers';
 import { Store } from '@ngrx/store';
 import { getUsersList } from 'src/app/store/selectors';
 import { Observable } from 'rxjs';
-import { LoadUsers } from 'src/app/store/actions';
+import { LoadUsers, UpsertUser } from 'src/app/store/actions';
 
 @Component({
   selector: 'app-users-list',
@@ -40,6 +40,10 @@ export class UsersListComponent implements OnInit {
       e.stopPropagation();
     }
     this.searchText = e ? e.target.value.trim() : this.searchText;
+  }
+
+  editUser(user) {
+    this.store.dispatch(new UpsertUser(user));
   }
 
 }

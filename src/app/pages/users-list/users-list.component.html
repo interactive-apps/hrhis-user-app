@@ -16,26 +16,27 @@
                     <th>Username</th>
                     <th>First name</th>
                     <th>Surname</th>
-                    <th>Forms</th>
+                    <th>Roles</th>
                     <th>Organisationunit</th>
                     <th>Actions</th>
                   </tr>
             </thead>
             <tbody>
              <tr *ngFor="let user of ((users$ | async) |
-             filterBy: ['email', 'first_name', 'last_name', 'forms', 'organisationunit'] : searchText |
+             filterBy: ['email', 'firstname', 'surname', 'roles', 'organisationunit'] : searchText |
              paginate: { itemsPerPage: itemsPerPage, currentPage: page})">
                <td> {{user.email}} </td>
-               <td> {{user.first_name}} </td>
-               <td> {{user.last_name}} </td>
-               <td> {{user.forms}} </td>
+               <td> {{user.firstname}} </td>
+               <td> {{user.surname}} </td>
+               <td> {{user.roles}} </td>
                <td> {{user.organisationunit }} </td>
                <td> 
                   <div class="btn btn-primary w-25" title="View user information">
                       <i class="fa fa-info w-100 d-flex justify-content-center" aria-hidden="true"></i>
                   </div>
 
-                 <div class="btn btn-secondary w-25 mr-2 ml-2" title="Edit user information">
+                 <div class="btn btn-secondary w-25 mr-2 ml-2" title="Edit user information"
+                 (click)="editUser(user)" [routerLink]="'/users/editUser'">
                     <i class="fa fa-pencil w-100 d-flex justify-content-center" aria-hidden="true"></i>
                  </div>
 

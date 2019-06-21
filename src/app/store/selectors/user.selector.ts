@@ -11,3 +11,10 @@ export const getUsersList = createSelector(
     getUserState,
     fromUserStateReducer.getUsersListState
 );
+
+export const getUseronListInfo = createSelector(
+    getUserState,
+    fromUserStateReducer.getUseronListInfoState
+);
+
+
