@@ -59,7 +59,7 @@
         </div>
 
         <div class="row mt-4">
-          <div class="btn btn-primary">Save</div>
+          <div class="btn btn-primary" (click)="saveUserInfo()">Save</div>
           <div class="btn btn-light ml-4" [routerLink]="'/' + (currentSectionSelection$ | async)">Cancel</div>
         </div>
         
@@ -67,3 +67,16 @@
     </div>
   </div>
 </div>
+
+  <!-- Notification component -->
+  <div *ngIf="showNotificationPopup && showNotificationContents.notificationProperties">
+    <app-notification
+      [notificationProperties]="showNotificationContents.notificationProperties"
+      [isSuccessful]="showNotificationContents.isSuccessful"
+      [isError]="showNotificationContents.isError"
+      [isOffline]="showNotificationContents.isOffline"
+      [uploadOffline]="showNotificationContents.uploadOffline"
+      [showNotification]="showNotificationPopup"
+    ></app-notification>
+  </div>
+    <!-- End of Notification component -->

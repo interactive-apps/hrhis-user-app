@@ -26,6 +26,8 @@ export class AddUserComponent implements OnInit {
   };
   comfirmPassword: string;
   isEditUserMode: boolean;
+  showNotificationContents: any;
+  showNotificationPopup: boolean;
 
   constructor(private store: Store<AppState>, private userService: UserService, private router: Router) {
     this.comfirmPassword = '';
@@ -58,38 +60,55 @@ export class AddUserComponent implements OnInit {
   }
 
   saveUserInfo() {
-    if (this.userInfo.password && this.userInfo.role &&
+    if (this.userInfo.password &&
       this.userInfo.firstname && this.userInfo.surname) {
 
       if (this.isEditUserMode) {
         // use service function to update user info
         this.userService.updateUserByUid(this.userInfo.id, this.userInfo )
         .subscribe(response => {
-          // TODO: include alert notification on success
           this.store.dispatch(new UpsertUser(this.userInfo));
+          this.showNotification('User Successfull added.', true, false);
         },
           error => {
             // TODO: include alert notification on fail
+            this.showNotification(error.message + '', false, true);
           });
 
       } else {
 
         this.userService.addUser(this.userInfo)
         .subscribe(response => {
-          // TODO: include alert notification on success
+          this.showNotification('User Successfull added.', true, false);
             // When is successful saved then route back to users list
           location.href = '#/users';
         },
           error => {
-            // TODO: include alert notification on fail
+            this.showNotification(error.message + '', false, true);
           });
       }
 
         // accept saving the user info
     } else {
-      // TODO: include alert notification on fail due to missing mandatory fields
+      this.showNotification('Please fill all mandatory fields.', false, true);
     }
 
+  }
+
+  showNotification(notificationProperties: any, isSuccessful?: boolean,
+                   isError?: boolean, isOffline?: boolean, uploadOffline?: boolean ) {
+    this.showNotificationContents = {
+    // tslint:disable-next-line:object-literal-shorthand
+    notificationProperties: notificationProperties,
+    isSuccessful: isSuccessful ? isSuccessful : false,
+    isError: isError ? isError : false,
+    isOffline: isOffline ? isOffline : false,
+    uploadOffline: uploadOffline ? uploadOffline : false
+    };
+    this.showNotificationPopup = true;
+    setTimeout(() => {
+    this.showNotificationPopup = false;
+    }, 3000);
   }
 
 }
