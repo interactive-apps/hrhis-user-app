@@ -4,7 +4,7 @@ import { AppState } from './store/reducers';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { getPageStateCurrentSelection, getUserSections } from './store/selectors';
-import { ToggoleSection, LoadPageStates } from './store/actions';
+import { ToggoleSection, LoadPageStates, LoadUserRoles } from './store/actions';
 import { Router } from '@angular/router';
 
 @Component({
@@ -18,6 +18,7 @@ export class AppComponent implements OnInit {
   currentSectionSelection$: Observable<any>;
   constructor(private store: Store<AppState>, private router: Router) {
     this.store.dispatch(new LoadPageStates());
+    this.store.dispatch(new LoadUserRoles());
     this.userSections$ = this.store.select(getUserSections);
     this.currentSectionSelection$ = store.select(getPageStateCurrentSelection);
 

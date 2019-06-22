@@ -11,6 +11,7 @@ export class AvailableSelectedComponent implements OnInit {
   @Input() availableItems: any;
   @Input() selectedItems: any;
   @Output() changesOnSelectedItems: any;
+  searchText = '';
 
   constructor() { }
 
@@ -19,6 +20,13 @@ export class AvailableSelectedComponent implements OnInit {
 
   onSelectedItemChanges(e) {
     this.changesOnSelectedItems.emit(this.selectedItems);
+  }
+
+  searchingItems(e) {
+    if (e) {
+      e.stopPropagation();
+    }
+    this.searchText = e ? e.target.value.trim() : this.searchText;
   }
 
 }

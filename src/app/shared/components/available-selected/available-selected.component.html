@@ -1,11 +1,16 @@
 <div class="row w-100 mt-4">
 
-    <div class="col-sm">
+    <div class="col-sm min-height">
       <label>Available {{nameSpaceTitle ? nameSpaceTitle: ''}}</label>
       <input type="text" class="form-control border-top-0 border-right-0 border-left-0"
-        placeholder="Search {{nameSpaceTitle ? nameSpaceTitle: ''}}">
+        placeholder="Search {{nameSpaceTitle ? nameSpaceTitle: ''}}"
+        (keyup)="searchingItems($event)">
+
     <ul class="available-list">
-      <li class="list-group-item-action" *ngFor="let item of availableItems">{{ item.name }}</li>
+      <li class="list-group-item-action" *ngFor="let item of (availableItems |
+      filterBy: ['name'] : searchText)">
+        {{ item.name }}
+      </li>
     </ul>
     </div>
 

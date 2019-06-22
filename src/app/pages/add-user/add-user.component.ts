@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { UserInfo } from 'src/app/store/models';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store/reducers';
-import { getPageStateCurrentSelection, getUseronListInfo } from 'src/app/store/selectors';
+import { getPageStateCurrentSelection, getUseronListInfo, getUserRolesList } from 'src/app/store/selectors';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/shared/services';
@@ -16,6 +16,7 @@ import { UpsertUser } from 'src/app/store/actions';
 export class AddUserComponent implements OnInit {
 
   currentSectionSelection$: Observable<any>;
+  userRoles$: Observable<any>;
   userInfo: UserInfo = {
     id: '',
     firstname: '', middlename: '',
@@ -32,6 +33,7 @@ export class AddUserComponent implements OnInit {
   constructor(private store: Store<AppState>, private userService: UserService, private router: Router) {
     this.comfirmPassword = '';
     this.currentSectionSelection$ = store.select(getPageStateCurrentSelection);
+    this.userRoles$ = store.select(getUserRolesList);
 
     router.events.subscribe((url: any) => {
       if (url.url) {

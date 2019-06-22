@@ -50,8 +50,8 @@
         <div class="row mt-4">
           <div class="w-100">
               <app-available-selected
-              [nameSpaceTitle]="'Groups'"
-              [availableItems]="[]"
+              [nameSpaceTitle]="'User Roles'"
+              [availableItems]="(userRoles$ | async)"
               [selectedItems]="[]"
               ></app-available-selected>
           </div>
