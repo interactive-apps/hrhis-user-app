@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/shared/services';
 import { UpsertUser } from 'src/app/store/actions';
+import * as fromUtilHelpers from '../../shared/helpers';
 
 @Component({
   selector: 'app-add-user',
@@ -16,25 +17,28 @@ import { UpsertUser } from 'src/app/store/actions';
 export class AddUserComponent implements OnInit {
 
   currentSectionSelection$: Observable<any>;
-  userRoles$: Observable<any>;
+  // userRoles$: Observable<any>;
   userInfo: UserInfo = {
     id: '',
     firstname: '', middlename: '',
     surname: '', email: '',
     phone: '', username: '',
     jobtitle: '', password: '',
-    role: '', organisationunit: ''
+    role: [], organisationunit: ''
   };
   comfirmPassword: string;
   isEditUserMode: boolean;
   showNotificationContents: any;
   showNotificationPopup: boolean;
+  userRoles: any = [];
 
   constructor(private store: Store<AppState>, private userService: UserService, private router: Router) {
     this.comfirmPassword = '';
     this.currentSectionSelection$ = store.select(getPageStateCurrentSelection);
-    this.userRoles$ = store.select(getUserRolesList);
-
+    // this.userRoles$ = store.select(getUserRolesList);
+    store.select(getUserRolesList).subscribe(userRoles => {
+        this.userRoles = userRoles ? userRoles : [];
+    });
     router.events.subscribe((url: any) => {
       if (url.url) {
         const currentRoute = url.url;
@@ -49,6 +53,8 @@ export class AddUserComponent implements OnInit {
         }
       }
     });
+
+    this.userInfo.id = (!this.isEditUserMode) ? fromUtilHelpers.makeLocalUid() : this.userInfo.id;
   }
 
   ngOnInit() {
@@ -59,6 +65,15 @@ export class AddUserComponent implements OnInit {
       // deny saving the user info
     }
 
+  }
+
+  recieveSelectedItems(items) {
+    const rolesSelected = (items.selectemItems || []).map(role => {
+      return {id: role.id, name: role.name};
+    });
+    this.userRoles = items.availableItems ? items.availableItems : [];
+    console.log(JSON.stringify(items.selectemItems));
+    this.store.dispatch(new UpsertUser({...this.userInfo, role: items.selectemItems ? items.selectemItems : []}));
   }
 
   saveUserInfo() {

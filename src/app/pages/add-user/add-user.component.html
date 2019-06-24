@@ -51,8 +51,9 @@
           <div class="w-100">
               <app-available-selected
               [nameSpaceTitle]="'User Roles'"
-              [availableItems]="(userRoles$ | async)"
-              [selectedItems]="[]"
+              [availableItems]="userRoles"
+              [selectedItems]="userInfo.role"
+              (changesOnSelectedItems)="recieveSelectedItems($event)"
               ></app-available-selected>
           </div>
             
