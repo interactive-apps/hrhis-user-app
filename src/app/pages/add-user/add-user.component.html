@@ -50,9 +50,10 @@
         <div class="row mt-4">
           <div class="w-100">
               <app-available-selected
-              [nameSpaceTitle]="'Groups'"
-              [availableItems]="[]"
-              [selectedItems]="[]"
+              [nameSpaceTitle]="'User Roles'"
+              [availableItems]="userRoles"
+              [selectedItems]="userInfo.role"
+              (changesOnSelectedItems)="recieveSelectedItems($event)"
               ></app-available-selected>
           </div>
             
