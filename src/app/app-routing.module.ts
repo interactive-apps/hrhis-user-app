@@ -14,11 +14,11 @@ const routes: Routes = [
   },
   {
     path: 'users',
-    loadChildren: './pages/users/users.module#UserModule'
+    loadChildren: './pages/users/users.module#UsersModule'
   },
   {
     path: 'userRoles',
-    loadChildren: './pages/user-roles/user-roles.module#UsersRolesModule'
+    loadChildren: './pages/user-roles/user-roles.module#UserRolesModule'
   },
 ];
 

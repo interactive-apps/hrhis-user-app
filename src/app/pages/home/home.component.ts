@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { userSections } from 'src/assets/config/userSectionsConfig';
-import { UserService } from 'src/app/shared/services/user.service';
 import { AppState } from 'src/app/store/reducers';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';

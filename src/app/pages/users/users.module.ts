@@ -5,6 +5,10 @@ import { userServices } from './services';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { UsersRoutingModule } from './users-routing.module';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { NgPipesModule } from 'ngx-pipes';
 
 @NgModule({
   declarations: [...usersComponents],
@@ -12,7 +16,11 @@ import { UsersRoutingModule } from './users-routing.module';
     CommonModule,
     RouterModule,
     SharedModule,
-    UsersRoutingModule
+    UsersRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    NgxPaginationModule,
+    NgPipesModule
   ],
   exports: [...usersComponents],
   providers: [...userServices]

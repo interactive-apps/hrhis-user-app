@@ -13,11 +13,13 @@ import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { effects } from './store/effects';
 import { NgPipesModule } from 'ngx-pipes';
+import { HomeComponent } from './pages/home/home.component';
+import { SharedModule } from './shared/shared.module';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent, HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -27,6 +29,7 @@ import { NgPipesModule } from 'ngx-pipes';
     AppRoutingModule,
     NgxPaginationModule,
     NgPipesModule,
+    SharedModule,
     StoreModule.forRoot(reducers, { metaReducers }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     EffectsModule.forRoot(effects)
