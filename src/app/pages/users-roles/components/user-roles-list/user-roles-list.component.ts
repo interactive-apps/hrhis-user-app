@@ -7,11 +7,11 @@ import { Observable } from 'rxjs';
 import { LoadUserRoles } from 'src/app/store/actions';
 
 @Component({
-  selector: 'app-user-roles',
-  templateUrl: './user-roles.component.html',
-  styleUrls: ['./user-roles.component.css']
+  selector: 'app-user-roles-list',
+  templateUrl: './user-roles-list.component.html',
+  styleUrls: ['./user-roles-list.component.css']
 })
-export class UserRolesComponent implements OnInit {
+export class UserRolesListComponent implements OnInit {
 
   userRoles$: Observable<any>;
   page = 1;

@@ -13,14 +13,13 @@ import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { effects } from './store/effects';
 import { SharedModule } from './shared/shared.module';
-import { pagesComponents } from './pages';
+import { pageModules } from './pages';
 import { NgPipesModule } from 'ngx-pipes';
 
 
 @NgModule({
   declarations: [
-    AppComponent,
-    ...pagesComponents
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -29,6 +28,7 @@ import { NgPipesModule } from 'ngx-pipes';
     FormsModule,
     AppRoutingModule,
     SharedModule,
+    ...pageModules,
     NgxPaginationModule,
     NgPipesModule,
     StoreModule.forRoot(reducers, { metaReducers }),

@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/shared/services';
 import { UpsertUser } from 'src/app/store/actions';
-import * as fromUtilHelpers from '../../shared/helpers';
+import * as fromUtilHelpers from '../../../../shared/helpers';
 
 @Component({
   selector: 'app-add-user',
