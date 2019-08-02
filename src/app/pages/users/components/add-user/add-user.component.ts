@@ -5,9 +5,9 @@ import { AppState } from 'src/app/store/reducers';
 import { getPageStateCurrentSelection, getUseronListInfo, getUserRolesList } from 'src/app/store/selectors';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
-import { UserService } from 'src/app/shared/services';
 import { UpsertUser } from 'src/app/store/actions';
 import * as fromUtilHelpers from '../../../../shared/helpers';
+import { UserService } from '../../services';
 
 @Component({
   selector: 'app-add-user',
@@ -43,7 +43,7 @@ export class AddUserComponent implements OnInit {
       if (url.url) {
         const currentRoute = url.url;
           // check if link is in edit mode
-        if (currentRoute.includes('editUser')) {
+        if (currentRoute.includes('edit')) {
           this.isEditUserMode = true;
           this.store.select(getUseronListInfo).subscribe(userOnEdit => {
             this.userInfo = userOnEdit ? userOnEdit : {};

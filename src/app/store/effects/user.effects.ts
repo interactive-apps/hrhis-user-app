@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { map, switchMap, mergeMap, withLatestFrom, tap, catchError } from 'rxjs/operators';
-import { UserService } from 'src/app/shared/services/user.service';
 import { UserActionTypes, AddUsers, UpdateNotification } from '../actions';
 import { of } from 'rxjs';
 import { AppState } from '../reducers';
 import { Store } from '@ngrx/store';
+import { UserService } from '../../pages/users/services';
 
 
 @Injectable()

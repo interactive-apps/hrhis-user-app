@@ -4,6 +4,7 @@ import { usersComponents } from './components';
 import { userServices } from './services';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { RouterModule } from '@angular/router';
+import { UsersRoutingModule } from './users-routing.module';
 
 @NgModule({
   declarations: [...usersComponents],
@@ -11,6 +12,7 @@ import { RouterModule } from '@angular/router';
     CommonModule,
     RouterModule,
     SharedModule,
+    UsersRoutingModule
   ],
   exports: [...usersComponents],
   providers: [...userServices]

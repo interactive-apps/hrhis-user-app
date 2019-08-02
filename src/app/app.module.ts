@@ -12,8 +12,6 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { effects } from './store/effects';
-import { SharedModule } from './shared/shared.module';
-import { pageModules } from './pages';
 import { NgPipesModule } from 'ngx-pipes';
 
 
@@ -27,8 +25,6 @@ import { NgPipesModule } from 'ngx-pipes';
     HttpClientModule,
     FormsModule,
     AppRoutingModule,
-    SharedModule,
-    ...pageModules,
     NgxPaginationModule,
     NgPipesModule,
     StoreModule.forRoot(reducers, { metaReducers }),
