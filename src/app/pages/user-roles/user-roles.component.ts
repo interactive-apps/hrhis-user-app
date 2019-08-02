@@ -41,4 +41,8 @@ export class UserRolesComponent implements OnInit {
     this.searchText = e ? e.target.value.trim() : this.searchText;
   }
 
+  addRole(e) {
+
+  }
+
 }

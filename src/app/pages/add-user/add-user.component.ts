@@ -72,7 +72,6 @@ export class AddUserComponent implements OnInit {
       return {id: role.id, name: role.name};
     });
     this.userRoles = items.availableItems ? items.availableItems : [];
-    console.log(JSON.stringify(items.selectemItems));
     this.store.dispatch(new UpsertUser({...this.userInfo, role: items.selectemItems ? items.selectemItems : []}));
   }
 

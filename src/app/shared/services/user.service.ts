@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class UserService {
+  apiLink = '../../../../api/';
 
   constructor(private httpClient: HttpClient) {}
 
@@ -16,49 +17,49 @@ export class UserService {
   }
 
   fetchUsers() {
-    const url = './assets/config/users.json';
+    const url = this.apiLink + '/users';
     return this.httpClient.get(url);
   }
 
   fetchUserByUid(userUid: string) {
-    const url = '../api/users/' + userUid;
+    const url = this.apiLink + '/users/' + userUid;
     return this.httpClient.get(url);
   }
 
   addUser(payload: any) {
-    const url = '../api/users';
+    const url = this.apiLink + '/users';
     return this.httpClient.post(url, payload);
   }
 
   updateUserByUid(userUid: string, payload: any) {
-    const url = '../api/users/' + userUid;
+    const url = this.apiLink + '/users/' + userUid;
     return this.httpClient.post(url, payload);
   }
 
   deleteUserByUid(userUid: string) {
-    const url = '../api/users/' + userUid;
+    const url = this.apiLink + '/users/' + userUid;
     return this.httpClient.delete(url);
   }
 
   // USer Role Service Functions
 
   fetchUserRoles() {
-    const url = './assets/config/userRoles.json';
+    const url = this.apiLink + '/userRole';
     return this.httpClient.get(url);
   }
 
   fetchUserRoleByUid(userRoleUid: string) {
-    const url = '../../userRole/' + userRoleUid;
+    const url = this.apiLink + '/userRole/' + userRoleUid;
     return this.httpClient.get(url);
   }
 
   updateUserRoleByUid(userRoleUid: string, payload: any) {
-    const url = '../../userRole/' + userRoleUid;
+    const url = this.apiLink + '/userRole/' + userRoleUid;
     return this.httpClient.post(url, payload);
   }
 
   deleteUserRoleByUid(userRoleUid: string) {
-    const url = '../../userRole/' + userRoleUid;
+    const url = this.apiLink + '/userRole/' + userRoleUid;
     return this.httpClient.delete(url);
   }
 
