@@ -1,7 +1,8 @@
-import { UserService } from './user.service';
+import { AppService } from './app.service';
 
-export const services: any[] = [
-    UserService
+export const sharedServices: any[] = [
+    AppService
 ];
 
-export * from './user.service';
+export * from './app.service';
+

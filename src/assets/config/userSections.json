@@ -2,13 +2,15 @@
     "userSections": [
         {
           "id": "users",
+          "addLink": "users/add",
           "name": "Users",
           "description": "Create, modify, view and delete Users",
           "addRoute": "",
           "viewRoute": ""
         },
         {
-          "id": "userroles",
+          "id": "userRoles",
+          "addLink": "userRoles/add",
           "name": "User Roles",
           "description": "Create, modify, view and delete User Roles",
           "addRoute": "",

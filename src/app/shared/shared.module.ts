@@ -4,7 +4,7 @@ import {RouterModule} from '@angular/router';
 import { NgPipesModule } from 'ngx-pipes';
 import { FormsModule } from '@angular/forms';
 import { sharedComponents } from './components';
-import { services } from './services';
+import { sharedServices } from './services';
 import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
@@ -19,6 +19,6 @@ import { NgxPaginationModule } from 'ngx-pagination';
     ...sharedComponents
   ],
   exports: [...sharedComponents],
-  providers: [...services]
+  providers: [...sharedServices]
 })
 export class SharedModule { }

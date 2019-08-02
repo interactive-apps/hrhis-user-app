@@ -6,7 +6,7 @@ import { Store } from '@ngrx/store';
 import { getUsersList, getUsersNotification } from 'src/app/store/selectors';
 import { Observable } from 'rxjs';
 import { LoadUsers, UpsertUser, DeleteUser } from 'src/app/store/actions';
-import { UserService } from 'src/app/shared/services';
+import { UserService } from '../../services';
 
 @Component({
   selector: 'app-users-list',
