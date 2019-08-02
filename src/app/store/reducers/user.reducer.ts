@@ -6,6 +6,7 @@ export interface State extends EntityState<User> {
   // additional entities state properties
   users: any;
   userInfoOnList: any;
+  notification: any;
 }
 
 export const adapter: EntityAdapter<User> = createEntityAdapter<User>();
@@ -13,7 +14,8 @@ export const adapter: EntityAdapter<User> = createEntityAdapter<User>();
 export const initialState: State = adapter.getInitialState({
   // additional entity state properties
   users: [],
-  userInfoOnList: {}
+  userInfoOnList: {},
+  notification: {}
 });
 
 export function reducer(
@@ -61,6 +63,10 @@ export function reducer(
       return adapter.removeAll(state);
     }
 
+    case UserActionTypes.UpdateNotification: {
+      return {...state, notification: action.payload };
+    }
+
     default: {
       return state;
     }
@@ -76,3 +82,4 @@ export const {
 
 export const getUsersListState = (state: State) => state.users;
 export const getUseronListInfoState = (state: State) => state.userInfoOnList;
+export const getUsersNotificationState = (state: State) => state.notification;

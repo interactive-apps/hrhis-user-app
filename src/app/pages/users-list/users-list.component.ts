@@ -3,9 +3,9 @@ import { dummyUsers } from 'src/assets/config/dummy-users';
 import { FilterByPipe } from 'ngx-pipes';
 import { AppState } from 'src/app/store/reducers';
 import { Store } from '@ngrx/store';
-import { getUsersList } from 'src/app/store/selectors';
+import { getUsersList, getUsersNotification } from 'src/app/store/selectors';
 import { Observable } from 'rxjs';
-import { LoadUsers, UpsertUser } from 'src/app/store/actions';
+import { LoadUsers, UpsertUser, DeleteUser } from 'src/app/store/actions';
 import { UserService } from 'src/app/shared/services';
 
 @Component({
@@ -26,6 +26,13 @@ export class UsersListComponent implements OnInit {
   constructor(private store: Store<AppState>, private userService: UserService) {
     this.store.dispatch(new LoadUsers());
     this.users$ = this.store.select(getUsersList);
+    this.store.select(getUsersNotification).subscribe(notification => {
+      if (notification.statusCode === 200) {
+        this.showNotification(notification.message, true);
+      } else {
+        this.showNotification(notification.message, false, true);
+      }
+    });
    }
 
   ngOnInit() {}
@@ -47,15 +54,16 @@ export class UsersListComponent implements OnInit {
 
   editUser(user) {
     this.store.dispatch(new UpsertUser(user));
-    location.href = '#/users/editUser/' + user.id;
+    location.href = '#/users/editUser/' + user.uid;
   }
 
   deleteUser(user) {
     if (confirm('Are you sure on the action of deleting ' + user.firstname + ' .?')) {
       // when OK is pressed, do the action of updating HRH.
-      this.userService.deleteUserByUid(user.id)
+      this.userService.deleteUserByUid(user.uid)
       .subscribe(response => {
         this.showNotification('User Successfull deleted.', true, false);
+        this.store.dispatch(new DeleteUser({id: user.id}));
       },
         error => {
           this.showNotification(error.message + '', false, true);

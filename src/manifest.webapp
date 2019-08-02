@@ -1,0 +1,21 @@
+{
+    "version": "v1.0.0-beta.1",
+    "name": "users",
+    "description": "HRIS Users App",
+    "launch_path": "index.html",
+    "icons": {
+        "16": "",
+        "48": "",
+        "128": ""
+    },
+    "developer": {
+        "name": "HISPTZ",
+        "url": ""
+    },
+    "default_locale": "en",
+    "activities": {
+        "hris": {
+            "href": "/hris"
+        }
+    }
+}

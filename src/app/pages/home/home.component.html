@@ -1,9 +1,8 @@
 
       <div class="row">
           <div class="card m-4 custom-width"
-          *ngFor="let section of (userSections$ | async)"
-          [routerLink]="'/' + section.id">
-              <div class="card-body unique-height">
+          *ngFor="let section of (userSections$ | async)">
+              <div class="card-body unique-height" [routerLink]="'/' + section.id">
                 <h5 class="card-title">{{ section.name }}</h5>
                 <!-- <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6> -->
                 <p class="card-text">{{ section.description }}</p>
@@ -12,7 +11,7 @@
                 <i class="fa fa-th-list ml-4 pull-right"
                 aria-hidden="true" title="View availble {{ section.name }}"
                 [routerLink]="'/' + section.id"></i>
-                <i class="fa fa-plus pull-right" aria-hidden="true" title="Add {{ section.name }}" ></i>
+                <i class="fa fa-plus pull-right" aria-hidden="true" title="Add {{ section.name }}" [routerLink]="'/users/addUser'"></i>
               </div>
             </div>
       

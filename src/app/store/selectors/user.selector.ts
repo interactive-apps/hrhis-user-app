@@ -17,4 +17,9 @@ export const getUseronListInfo = createSelector(
     fromUserStateReducer.getUseronListInfoState
 );
 
+export const getUsersNotification = createSelector(
+    getUserState,
+    fromUserStateReducer.getUsersNotificationState
+);
+
 

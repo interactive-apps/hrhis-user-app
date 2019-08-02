@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class UserService {
-  apiLink = '../../../../api/';
+  apiLink = '../../../../api';
 
   constructor(private httpClient: HttpClient) {}
 

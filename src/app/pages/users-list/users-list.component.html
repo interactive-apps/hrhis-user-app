@@ -1,6 +1,6 @@
 <div class="row w-100 mt-4 mb-4">
 
-    <div class="row w-25 ml-2 mb-2">
+    <div class="row w-25 ml-2 mb-2" *ngIf="(users$ | async).length > 0">
         <div class="input-group">
             <input class="form-control py-2 border-top-0 border-right-0 border-left-0" placeholder="Search..."
             (keyup)="searchingItems($event)">
@@ -8,7 +8,7 @@
         </div>
     </div>
     
-  <div class="row w-100 ml-2" *ngIf="(users$ | async)">
+  <div class="row w-100 ml-2" *ngIf="(users$ | async).length > 0">
     <div class="card elevate-element w-100 mb-4">
         <table class="table table-hover">
             <thead>
@@ -66,10 +66,19 @@
           </table>
     </div>
   </div>
+
+  <div class="row w-100 ml-2" *ngIf="(users$ | async).length < 1">
+    <div class="w-100">
+        <app-no-data-error
+        [errorMessage]="'No data was found in the server'"
+        ></app-no-data-error>
+    </div>
+    
+  </div>
 </div>
 
 <div class="right-corder-container">     
-  <button class="btn btn-primary right-corder-container-button"[routerLink]="'/users/addUser'">         
+  <button class="btn btn-primary right-corder-container-button" [routerLink]="'/users/addUser'">         
     <i class="fa fa-plus w-100 d-flex justify-content-center" aria-hidden="true" style="font-size: x-large"></i>   
   </button> 
 </div>
