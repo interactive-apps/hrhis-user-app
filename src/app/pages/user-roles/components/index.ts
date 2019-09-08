@@ -2,8 +2,7 @@ import { UserRolesListComponent } from './user-roles-list/user-roles-list.compon
 import { AddUserRoleComponent } from './add-user-role/add-user-role.component';
 
 export const userRoleComponents: any[] = [
-    UserRolesListComponent,
-    AddUserRoleComponent
+    UserRolesListComponent, AddUserRoleComponent
 ];
 
 export * from './user-roles-list/user-roles-list.component';
