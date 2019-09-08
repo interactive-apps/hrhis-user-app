@@ -68,7 +68,7 @@ export class USerEffects {
   @Effect()
   deleteUser$ = this.actions$.pipe(
     ofType(UserActionTypes.DeleteUser),
-    switchMap((action: any) => this.userService.deleteUserByUid(action.payload)),
+    switchMap((action: any) => this.userService.deleteUserByUid(action.payload.uid ? action.payload.uid : '')),
     map(response => {
       // When is successful saved then route back to users list
       location.href = '#/users';

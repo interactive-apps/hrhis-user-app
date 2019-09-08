@@ -45,13 +45,13 @@ export class UsersListComponent implements OnInit {
 
   editUser(user) {
     this.store.dispatch(new UpsertUser(user));
-    location.href = '#/users/editUser/' + user.uid;
+    location.href = '#/users/edit/' + user.uid;
   }
 
   deleteUser(user) {
     if (confirm('Are you sure on the action of deleting ' + user.firstname + ' .?')) {
       // when OK is pressed, do the action of updating HRH.
-      this.store.dispatch(new DeleteUser(user.uid));
+      this.store.dispatch(new DeleteUser(user));
     } else {
       // when Cancel is pressed, do nothing.
     }

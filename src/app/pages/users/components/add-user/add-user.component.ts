@@ -83,7 +83,7 @@ export class AddUserComponent implements OnInit {
           // deny saving the user info
           alert('Password and Confirmed password do not match.');
         } else {
-          this.store.dispatch(new AddUser(this.userService));
+          this.store.dispatch(new AddUser(this.userInfo));
         }
       }
     } else {

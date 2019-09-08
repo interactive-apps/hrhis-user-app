@@ -9,7 +9,7 @@ export const getUserState = createSelector(
 
 export const getUsersList = createSelector(
     getUserState,
-    fromUserStateReducer.getUsersListState
+    fromUserStateReducer.selectAll
 );
 
 export const getUseronListInfo = createSelector(

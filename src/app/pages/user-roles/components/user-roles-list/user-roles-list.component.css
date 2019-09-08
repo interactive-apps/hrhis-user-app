@@ -1,0 +1,52 @@
+.btned.eq-ui-btn-fab {
+    border-radius: 50%;
+    width: 56px;
+    min-width: 56px;
+    height: 56px;
+    padding: 0;
+}
+
+.btn-custom {
+    color: #fff;
+    background-color: #03a9f4;
+}
+.btned {
+    transition: box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 0;
+    border: none;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 16px;
+    min-width: 64px;
+    padding: 0 12px;
+    height: 36px;
+    line-height: 36px;
+}
+
+.btned.eq-ui-btn-fab i {
+    line-height: 56px;
+    width: inherit;
+}
+.icon {
+    line-height: inherit;
+    font-size: 20px;
+    color: white
+}
+.mdi {
+    display: inline-block;
+    font: normal normal normal 24px/1 "Material Design Icons";
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transform: translate(0, 0);
+}
+.mdi {
+    display: inline-block;
+    font: normal normal normal 24px/1 "Material Icons";
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transform: translate(0, 0);
+}
