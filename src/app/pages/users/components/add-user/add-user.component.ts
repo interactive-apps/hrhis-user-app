@@ -5,7 +5,7 @@ import { AppState } from 'src/app/store/reducers';
 import { getPageStateCurrentSelection, getUseronListInfo, getUserRolesList } from 'src/app/store/selectors';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
-import { UpsertUser } from 'src/app/store/actions';
+import { UpsertUser, AddUser, UpdateUser, UpdateNotification } from 'src/app/store/actions';
 import * as fromUtilHelpers from '../../../../shared/helpers';
 import { UserService } from '../../services';
 
@@ -28,8 +28,6 @@ export class AddUserComponent implements OnInit {
   };
   comfirmPassword: string;
   isEditUserMode: boolean;
-  showNotificationContents: any;
-  showNotificationPopup: boolean;
   userRoles: any = [];
 
   constructor(private store: Store<AppState>, private userService: UserService, private router: Router) {
@@ -61,8 +59,9 @@ export class AddUserComponent implements OnInit {
   }
 
   onchangeConfirmPassword(e) {
-    if (this.comfirmPassword !== this.userInfo.password) {
+    if (this.comfirmPassword !== this.userInfo.password && !this.isEditUserMode) {
       // deny saving the user info
+      alert('Password and Confirmed password do not match.');
     }
 
   }
@@ -76,56 +75,23 @@ export class AddUserComponent implements OnInit {
   }
 
   saveUserInfo() {
-    // const 
-    if (this.userInfo.password &&
-      this.userInfo.firstname && this.userInfo.surname) {
-
+    if (this.userInfo.password && this.userInfo.firstname && this.userInfo.surname) {
       if (this.isEditUserMode) {
-        // use service function to update user info
-        this.userService.updateUserByUid(this.userInfo.id, this.userInfo )
-        .subscribe(response => {
-          this.store.dispatch(new UpsertUser(this.userInfo));
-          this.showNotification('User Successfull added.', true, false);
-        },
-          error => {
-            // TODO: include alert notification on fail
-            this.showNotification(error.message + '', false, true);
-          });
-
+        this.store.dispatch(new UpdateUser(this.userInfo));
       } else {
-
-        this.userService.addUser(this.userInfo)
-        .subscribe(response => {
-          this.showNotification('User Successfull added.', true, false);
-            // When is successful saved then route back to users list
-          location.href = '#/users';
-        },
-          error => {
-            this.showNotification(error.message + '', false, true);
-          });
+        if (this.comfirmPassword !== this.userInfo.password) {
+          // deny saving the user info
+          alert('Password and Confirmed password do not match.');
+        } else {
+          this.store.dispatch(new AddUser(this.userService));
+        }
       }
-
-        // accept saving the user info
     } else {
-      this.showNotification('Please fill all mandatory fields.', false, true);
+      this.store.dispatch(new UpdateNotification({
+        message: 'Please fill all mandatory fields.', statusCode: 500
+      }));
     }
 
-  }
-
-  showNotification(notificationProperties: any, isSuccessful?: boolean,
-                   isError?: boolean, isOffline?: boolean, uploadOffline?: boolean ) {
-    this.showNotificationContents = {
-    // tslint:disable-next-line:object-literal-shorthand
-    notificationProperties: notificationProperties,
-    isSuccessful: isSuccessful ? isSuccessful : false,
-    isError: isError ? isError : false,
-    isOffline: isOffline ? isOffline : false,
-    uploadOffline: uploadOffline ? uploadOffline : false
-    };
-    this.showNotificationPopup = true;
-    setTimeout(() => {
-    this.showNotificationPopup = false;
-    }, 3000);
   }
 
 }

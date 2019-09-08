@@ -51,8 +51,7 @@ export class UsersListComponent implements OnInit {
   deleteUser(user) {
     if (confirm('Are you sure on the action of deleting ' + user.firstname + ' .?')) {
       // when OK is pressed, do the action of updating HRH.
-      // TODO: Add a function for deleting user by store
-      this.userService.deleteUserByUid(user.uid);
+      this.store.dispatch(new DeleteUser(user.uid));
     } else {
       // when Cancel is pressed, do nothing.
     }

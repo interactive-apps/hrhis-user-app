@@ -46,7 +46,7 @@ export class UpsertUsers implements Action {
 export class UpdateUser implements Action {
   readonly type = UserActionTypes.UpdateUser;
 
-  constructor(public payload: { user: Update<User> }) {}
+  constructor(public payload: any) {}
 }
 
 export class UpdateUsers implements Action {
@@ -58,7 +58,7 @@ export class UpdateUsers implements Action {
 export class DeleteUser implements Action {
   readonly type = UserActionTypes.DeleteUser;
 
-  constructor(public payload: { id: string }) {}
+  constructor(public payload: any) {}
 }
 
 export class DeleteUsers implements Action {
