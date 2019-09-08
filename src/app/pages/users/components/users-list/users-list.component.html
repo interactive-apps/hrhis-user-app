@@ -10,7 +10,7 @@
     
   <div class="row w-100 ml-2" *ngIf="(users$ | async).length > 0">
     <div class="card w-100 mb-4">
-        <table class="table table-hover">
+        <table class="table table-hover table-visualization">
             <thead>
                 <tr>
                     <th>Username</th>
@@ -18,7 +18,7 @@
                     <th>Surname</th>
                     <th>Roles</th>
                     <th>Organisationunit</th>
-                    <th>Actions</th>
+                    <th class="width-10">Actions</th>
                   </tr>
             </thead>
             <tbody>
@@ -30,7 +30,7 @@
                <td> {{user.surname}} </td>
                <td> {{user.roles ? user.roles : ''}} </td>
                <td> {{user.organisationunit ? user.organisationunit : ''}} </td>
-               <td> 
+               <td class="d-flex"> 
                   <div class="btn btn-primary w-25" title="View user information" (click)="editUser(user)">
                       <i class="fa fa-info w-100 d-flex justify-content-center" aria-hidden="true"></i>
                   </div>
