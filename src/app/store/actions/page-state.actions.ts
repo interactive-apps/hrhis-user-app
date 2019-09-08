@@ -5,8 +5,8 @@ import { PageState } from '../models/page-state.model';
 export enum PageStateActionTypes {
   ToggoleSection = '[PageState] Toggole User Section',
   LoadPageStates = '[PageState] Load PageStates',
-  AddPageState = '[PageState] Add PageState',
-  UpsertPageState = '[PageState] Upsert PageState',
+  UpdateNotification = '[PageState] Update Notification Info',
+  UpdateNotificationStatus = '[PageState] Update Notification Status',
   AddPageStates = '[PageState] Add PageStates',
   UpsertPageStates = '[PageState] Upsert PageStates',
   UpdatePageState = '[PageState] Update PageState',
@@ -26,16 +26,16 @@ export class LoadPageStates implements Action {
   readonly type = PageStateActionTypes.LoadPageStates;
 }
 
-export class AddPageState implements Action {
-  readonly type = PageStateActionTypes.AddPageState;
+export class UpdateNotification implements Action {
+  readonly type = PageStateActionTypes.UpdateNotification;
 
-  constructor(public payload: { pageState: PageState }) {}
+  constructor(public payload: any) {}
 }
 
-export class UpsertPageState implements Action {
-  readonly type = PageStateActionTypes.UpsertPageState;
+export class UpdateNotificationStatus implements Action {
+  readonly type = PageStateActionTypes.UpdateNotificationStatus;
 
-  constructor(public payload: { pageState: PageState }) {}
+  constructor(public payload: any) {}
 }
 
 export class AddPageStates implements Action {
@@ -80,8 +80,8 @@ export class ClearPageStates implements Action {
 
 export type PageStateActions =
  LoadPageStates
- | AddPageState
- | UpsertPageState
+ | UpdateNotification
+ | UpdateNotificationStatus
  | AddPageStates
  | UpsertPageStates
  | UpdatePageState

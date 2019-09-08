@@ -76,6 +76,7 @@ export class AddUserComponent implements OnInit {
   }
 
   saveUserInfo() {
+    // const 
     if (this.userInfo.password &&
       this.userInfo.firstname && this.userInfo.surname) {
 

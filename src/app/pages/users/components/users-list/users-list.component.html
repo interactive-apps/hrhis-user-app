@@ -9,7 +9,7 @@
     </div>
     
   <div class="row w-100 ml-2" *ngIf="(users$ | async).length > 0">
-    <div class="card elevate-element w-100 mb-4">
+    <div class="card w-100 mb-4">
         <table class="table table-hover">
             <thead>
                 <tr>
@@ -82,16 +82,3 @@
     <i class="fa fa-plus w-100 d-flex justify-content-center" aria-hidden="true" style="font-size: x-large"></i>   
   </button> 
 </div>
-
-  <!-- Notification component -->
-  <div *ngIf="showNotificationPopup && showNotificationContents.notificationProperties">
-    <app-notification
-      [notificationProperties]="showNotificationContents.notificationProperties"
-      [isSuccessful]="showNotificationContents.isSuccessful"
-      [isError]="showNotificationContents.isError"
-      [isOffline]="showNotificationContents.isOffline"
-      [uploadOffline]="showNotificationContents.uploadOffline"
-      [showNotification]="showNotificationPopup"
-    ></app-notification>
-  </div>
-    <!-- End of Notification component -->

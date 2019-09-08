@@ -12,8 +12,7 @@ export enum UserActionTypes {
   UpdateUsers = '[User] Update Users',
   DeleteUser = '[User] Delete User',
   DeleteUsers = '[User] Delete Users',
-  ClearUsers = '[User] Clear Users',
-  UpdateNotification = '[user] Update notification'
+  ClearUsers = '[User] Clear Users'
 }
 
 export class LoadUsers implements Action {
@@ -23,7 +22,7 @@ export class LoadUsers implements Action {
 export class AddUser implements Action {
   readonly type = UserActionTypes.AddUser;
 
-  constructor(public payload: { user: User }) {}
+  constructor(public payload: any) {}
 }
 
 export class UpsertUser implements Action {
@@ -72,11 +71,6 @@ export class ClearUsers implements Action {
   readonly type = UserActionTypes.ClearUsers;
 }
 
-export class UpdateNotification implements Action {
-  readonly type = UserActionTypes.UpdateNotification;
-
-  constructor(public payload: any) {}
-}
 
 export type UserActions =
  LoadUsers
@@ -88,5 +82,4 @@ export type UserActions =
  | UpdateUsers
  | DeleteUser
  | DeleteUsers
- | ClearUsers
- | UpdateNotification;
+ | ClearUsers;

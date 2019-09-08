@@ -1,21 +1,33 @@
 <app-top-nav></app-top-nav>
 <div class="container-fluid">
-        <div class="row">
-          <div class="col-sm-2">
-              <ul class="list-group mt-4">
-                  <li class="list-group-item list-group-item-action"
-                    *ngFor="let section of (userSections$ | async)"
-                    [ngClass]="{'user-section-selected':section.id === (currentSectionSelection$ | async)}"
-                    [routerLink]="'/' + section.id"
-                    (click)="toggoleSection(section.id)"> 
-                    {{ section.name }}
-                  </li>
-            </ul>
-          </div>
-          <div class="col-sm-10">
-                <router-outlet></router-outlet>
-          </div>
-        </div>
-      </div>
+  <div class="row">
+    <div class="col-sm-2">
+        <ul class="list-group mt-4">
+            <li class="list-group-item list-group-item-action"
+              *ngFor="let section of (userSections$ | async)"
+              [ngClass]="{'user-section-selected':section.id === (currentSectionSelection$ | async)}"
+              [routerLink]="'/' + section.id"
+              (click)="toggoleSection(section.id)"> 
+              {{ section.name }}
+            </li>
+      </ul>
+    </div>
+    <div class="col-sm-10">
+          <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
 
+ <!-- Notification component -->
+<div *ngIf="showNotificationPopup && showNotificationContents.notificationProperties">
+  <app-notification
+    [notificationProperties]="showNotificationContents.notificationProperties"
+    [isSuccessful]="showNotificationContents.isSuccessful"
+    [isError]="showNotificationContents.isError"
+    [isOffline]="showNotificationContents.isOffline"
+    [uploadOffline]="showNotificationContents.uploadOffline"
+    [showNotification]="showNotificationPopup"
+  ></app-notification>
+</div>
+  <!-- End of Notification component -->
 

@@ -16,3 +16,13 @@ export const getUserSections = createSelector(
     getPageState,
     fromPageStateReducer.getUserSectionsState
 );
+
+export const getNotificationInfo = createSelector(
+    getPageState,
+    fromPageStateReducer.getNotificationInfoState
+);
+
+export const getNotificationStatus = createSelector(
+    getPageState,
+    fromPageStateReducer.getNotificationStatusState
+);

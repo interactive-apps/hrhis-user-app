@@ -5,6 +5,8 @@ export interface State extends EntityState<PageState> {
   // additional entities state properties
   currentSection: string;
   userSections: any;
+  notification: any;
+  notificationStatus: boolean;
 }
 
 export const adapter: EntityAdapter<PageState> = createEntityAdapter<PageState>();
@@ -12,7 +14,9 @@ export const adapter: EntityAdapter<PageState> = createEntityAdapter<PageState>(
 export const initialState: State = adapter.getInitialState({
   // additional entity state properties
   currentSection: '',
-  userSections: []
+  userSections: [],
+  notification: {message: '', statusCode: 0},
+  notificationStatus: false
 });
 
 export function reducer(
@@ -25,12 +29,12 @@ export function reducer(
       return {...state, currentSection: action.payload };
     }
 
-    case PageStateActionTypes.AddPageState: {
-      return adapter.addOne(action.payload.pageState, state);
+    case PageStateActionTypes.UpdateNotification: {
+      return {...state, notification: action.payload, notificationStatus: true };
     }
 
-    case PageStateActionTypes.UpsertPageState: {
-      return adapter.upsertOne(action.payload.pageState, state);
+    case PageStateActionTypes.UpdateNotificationStatus: {
+      return {...state, notificationStatus: action.payload };
     }
 
     case PageStateActionTypes.AddPageStates: {
@@ -80,3 +84,5 @@ export const {
 
 export const getCurrentSectionState = (state: State) => state.currentSection;
 export const getUserSectionsState = (state: State) => state.userSections;
+export const getNotificationInfoState = (state: State) => state.notification;
+export const getNotificationStatusState = (state: State) => state.notificationStatus;

@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { map, switchMap, mergeMap, withLatestFrom, tap, catchError } from 'rxjs/operators';
-import { UserActionTypes, AddUsers, UpdateNotification } from '../actions';
+import { UserActionTypes, AddUsers, UpdateNotification, AddUser } from '../actions';
 import { of, Observable } from 'rxjs';
 import { AppState } from '../reducers';
 import { Store } from '@ngrx/store';
 import { UserService } from '../../pages/users/services';
+import * as fromHelpers from '../../shared/helpers';
 
 
 @Injectable()
@@ -26,5 +27,22 @@ export class USerEffects {
         message: 'error: ' + error.message
         })
       ))
+  );
+
+  @Effect()
+  addUser$ = this.actions$.pipe(
+    ofType(UserActionTypes.AddUser),
+    switchMap((action: any) => {
+      const sanitizedUserPayload = fromHelpers.sanitizeNewUserinfo(action.payload);
+      return this.userService.addUser(sanitizedUserPayload);
+    }),
+    map(response => {
+      // When is successful saved then route back to users list
+      location.href = '#/users';
+      return new UpdateNotification({message: 'User Successfull created', statusCode: 200});
+    }),
+    catchError(error => of(
+      this.store.dispatch(new UpdateNotification({message: error.message, statusCode: error.statusCode}))
+    ))
   );
 }
