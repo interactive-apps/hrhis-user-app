@@ -5,7 +5,8 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class UserService {
-  apiLink = '../../../../api';
+  // apiLink = '../../../../api';
+  apiLink = '../../../api';
 
   constructor(private httpClient: HttpClient) {}
 
@@ -33,7 +34,7 @@ export class UserService {
 
   updateUserByUid(userUid: string, payload: any) {
     const url = this.apiLink + '/users/' + userUid;
-    return this.httpClient.post(url, payload);
+    return this.httpClient.put(url, payload);
   }
 
   deleteUserByUid(userUid: string) {

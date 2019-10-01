@@ -75,8 +75,9 @@ export class AddUserComponent implements OnInit {
   }
 
   saveUserInfo() {
-    if (this.userInfo.password && this.userInfo.firstname && this.userInfo.surname) {
+    if (this.userInfo.firstname && this.userInfo.surname) {
       if (this.isEditUserMode) {
+        console.log(this.userInfo);
         this.store.dispatch(new UpdateUser(this.userInfo));
       } else {
         if (this.comfirmPassword !== this.userInfo.password) {

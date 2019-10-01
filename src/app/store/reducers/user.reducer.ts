@@ -20,7 +20,8 @@ export function reducer(
 ): State {
   switch (action.type) {
     case UserActionTypes.AddUser: {
-      return adapter.addOne(action.payload, state);
+      return state;
+      // return adapter.addOne(action.payload, state);
     }
 
     case UserActionTypes.UpsertUser: {
@@ -36,7 +37,8 @@ export function reducer(
     }
 
     case UserActionTypes.UpdateUser: {
-      return adapter.updateOne(action.payload.user, state);
+      return state;
+      // return adapter.updateOne(action.payload.user, state);
     }
 
     case UserActionTypes.UpdateUsers: {
