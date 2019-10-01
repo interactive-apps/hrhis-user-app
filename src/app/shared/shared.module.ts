@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { sharedComponents } from './components';
 import { sharedServices } from './services';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { materialModules } from './material-modules';
 
 @NgModule({
   imports: [
@@ -13,12 +14,13 @@ import { NgxPaginationModule } from 'ngx-pagination';
     RouterModule,
     NgPipesModule,
     NgxPaginationModule,
-    FormsModule
+    FormsModule,
+    ...materialModules
   ],
   declarations: [
     ...sharedComponents
   ],
-  exports: [...sharedComponents],
+  exports: [...sharedComponents, ...materialModules],
   providers: [...sharedServices]
 })
 export class SharedModule { }
