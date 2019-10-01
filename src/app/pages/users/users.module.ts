@@ -11,7 +11,9 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { NgPipesModule } from 'ngx-pipes';
 
 @NgModule({
-  declarations: [...usersComponents],
+  declarations: [
+    ...usersComponents
+  ],
   imports: [
     CommonModule,
     RouterModule,

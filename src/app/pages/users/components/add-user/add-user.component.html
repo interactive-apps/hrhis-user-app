@@ -1,50 +1,56 @@
 <div class="row w-100 mt-4 mb-4">
-  <div class="card w-100 mb-4">
+    <mat-card class="w-100 mb-4">
+  <!-- <div class="card w-100 mb-4"> -->
+
     <div class="card-body">
       <div class="col">
         <div class="row mt-4">
-          <input type="text" class="form-control border-top-0 border-right-0 border-left-0"
-          placeholder="Username *" title="Username" [(ngModel)]="userInfo.username">
+            <mat-form-field class="w-100">
+              <input matInput type="text" placeholder="Username *" [(ngModel)]="userInfo.username">
+            </mat-form-field>
         </div>
 
         <div class="row mt-4">
-          <input type="email" class="form-control border-top-0 border-right-0 border-left-0"
-          placeholder="Email *" title="Email" [(ngModel)]="userInfo.email">
+            <mat-form-field class="w-100">
+              <input matInput type="email" placeholder="Email *" [(ngModel)]="userInfo.email">
+            </mat-form-field>
         </div>
 
         <div class="row mt-4">
-          <input type="password" class="form-control border-top-0 border-right-0 border-left-0"
-          placeholder="Password *" title="Password" [(ngModel)]="userInfo.password">
+            <mat-form-field class="w-100">
+              <input matInput type="password" placeholder="Password *" [(ngModel)]="userInfo.password">
+            </mat-form-field>
         </div>
 
         <div class="row mt-4">
-          <input type="password" class="form-control border-top-0 border-right-0 border-left-0"
-          placeholder="Repeat Password *" title="Repeat Password" [(ngModel)]="comfirmPassword" (change)="onchangeConfirmPassword($event)">
+            <mat-form-field class="w-100">
+              <input matInput type="password" placeholder="Repeat Password *"
+                [(ngModel)]="comfirmPassword" (change)="onchangeConfirmPassword($event)">
+            </mat-form-field>
         </div>
 
         <div class="row mt-4">
-          <input type="text" class="form-control border-top-0 border-right-0 border-left-0"
-          placeholder="Phone Number" title="Phone Number" [(ngModel)]="userInfo.phone">
+            <mat-form-field class="w-100">
+              <input matInput type="text" placeholder="Phone Number" [(ngModel)]="userInfo.phone">
+            </mat-form-field>
         </div>
 
         <div class="row mt-4">
-          <input type="text" class="form-control border-top-0 border-right-0 border-left-0"
-          placeholder="Job Title" title="Job Title" [(ngModel)]="userInfo.jobtitle">
+            <mat-form-field class="w-100">
+              <input matInput type="text" placeholder="Job Title" [(ngModel)]="userInfo.jobtitle">
+            </mat-form-field>
         </div>
 
         <div class="row mt-4">
-          <input type="text" class="form-control border-top-0 border-right-0 border-left-0"
-          placeholder="First Name *" title="First Name" [(ngModel)]="userInfo.firstname">
+            <mat-form-field class="w-100">
+              <input matInput type="text" placeholder="First Name *" [(ngModel)]="userInfo.firstname">
+            </mat-form-field>
         </div>
 
         <div class="row mt-4">
-          <input type="text" class="form-control border-top-0 border-right-0 border-left-0"
-          placeholder="Middle Name" title="Middle Name" [(ngModel)]="userInfo.middlename">
-        </div>
-
-        <div class="row mt-4">
-          <input type="text" class="form-control border-top-0 border-right-0 border-left-0"
-          placeholder="Sur Name *" title="Sur Name" [(ngModel)]="userInfo.surname">
+            <mat-form-field class="w-100">
+              <input matInput type="text" placeholder="Sur Name *" [(ngModel)]="userInfo.surname">
+            </mat-form-field>
         </div>
 
         <div class="row mt-4">
@@ -60,11 +66,14 @@
         </div>
 
         <div class="row mt-4">
-          <div class="btn btn-primary" (click)="saveUserInfo()">Save</div>
-          <div class="btn btn-light ml-4" [routerLink]="'/' + (currentSectionSelection$ | async)">Cancel</div>
+          <!-- <div class="btn btn-primary" (click)="saveUserInfo()">Save</div> -->
+          <button mat-raised-button color="primary" (click)="saveUserInfo()">Save</button>
+          <button mat-raised-button class="ml-4" [routerLink]="'/' + (currentSectionSelection$ | async)">Cancel</button>
+          <!-- <div class="btn btn-light ml-4" [routerLink]="'/' + (currentSectionSelection$ | async)">Cancel</div> -->
         </div>
         
       </div>
     </div>
-  </div>
+  <!-- </div> -->
+</mat-card>
 </div>

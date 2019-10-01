@@ -2,14 +2,18 @@
 
     <div class="row w-25 ml-2 mb-2" *ngIf="(users$ | async).length > 0">
         <div class="input-group">
-            <input class="form-control py-2 border-top-0 border-right-0 border-left-0" placeholder="Search..."
-            (keyup)="searchingItems($event)">
+            <mat-form-field class="w-100">
+                <input matInput type="text"  placeholder="Search" (keyup)="searchingItems($event)">
+              </mat-form-field>
             
         </div>
     </div>
-    
+
+  <mat-progress-bar mode="indeterminate" class="ml-2"></mat-progress-bar>
+
   <div class="row w-100 ml-2" *ngIf="(users$ | async).length > 0">
-    <div class="card w-100 mb-4">
+      <mat-card class="w-100 mb-4">
+    <!-- <div class="card w-100 mb-4"> -->
         <table class="table table-hover table-visualization">
             <thead>
                 <tr>
@@ -31,16 +35,16 @@
                <td> {{user.roles ? user.roles : ''}} </td>
                <td> {{user.organisationunit ? user.organisationunit : ''}} </td>
                <td class="d-flex"> 
-                  <div class="btn btn-primary w-25" title="View user information" (click)="editUser(user)">
+                  <div matRipple class="btn btn-primary w-25" title="View user information" (click)="editUser(user)">
                       <i class="fa fa-info w-100 d-flex justify-content-center" aria-hidden="true"></i>
                   </div>
 
-                 <div class="btn btn-secondary w-25 mr-2 ml-2" title="Edit user information"
+                 <div matRipple class="btn btn-secondary w-25 mr-2 ml-2" title="Edit user information"
                  (click)="editUser(user)">
                     <i class="fa fa-pencil w-100 d-flex justify-content-center" aria-hidden="true"></i>
                  </div>
 
-                 <div class="btn btn-danger w-25" title="Delete user information" (click)="deleteUser(user)">
+                 <div matRipple class="btn btn-danger w-25" title="Delete user information" (click)="deleteUser(user)">
                     <i class="fa fa-trash-o w-100 d-flex justify-content-center" aria-hidden="true"></i>
                  </div>
 
@@ -64,7 +68,8 @@
               </tr>
             </tfoot>
           </table>
-    </div>
+    <!-- </div> -->
+   </mat-card>
   </div>
 
   <div class="row w-100 ml-2" *ngIf="(users$ | async).length < 1">
@@ -78,9 +83,10 @@
 </div>
 
 <div class="right-corder-container">
-  <button class="btned btn-custom eq-ui-btn-fab"
+    <button mat-fab color="primary" matTooltip="Add user" class="font-x-large" [routerLink]="'/users/add'">+</button>
+  <!-- <button class="btned btn-custom eq-ui-btn-fab"
   title="Add user"
   [routerLink]="'/users/add'">
     <i class="fa fa-plus w-100 d-flex justify-content-center icon" aria-hidden="true"></i> 
-  </button>
+  </button> -->
 </div>
