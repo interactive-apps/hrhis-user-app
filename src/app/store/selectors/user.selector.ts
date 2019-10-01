@@ -17,4 +17,10 @@ export const getUseronListInfo = createSelector(
     fromUserStateReducer.getUseronListInfoState
 );
 
+export const getUserLoader = createSelector(
+    getUserState,
+    fromUserStateReducer.getUserLoaderState
+);
+
+
 

@@ -9,7 +9,7 @@
         </div>
     </div>
 
-  <mat-progress-bar mode="indeterminate" class="ml-2"></mat-progress-bar>
+  <mat-progress-bar mode="indeterminate" class="ml-2" *ngIf="(usersLoader$ | async)"></mat-progress-bar>
 
   <div class="row w-100 ml-2" *ngIf="(users$ | async).length > 0">
       <mat-card class="w-100 mb-4">
@@ -72,7 +72,7 @@
    </mat-card>
   </div>
 
-  <div class="row w-100 ml-2" *ngIf="(users$ | async).length < 1">
+  <div class="row w-100 ml-2" *ngIf="(users$ | async).length < 1 && !(usersLoader$ | async)">
     <div class="w-100">
         <app-no-data-error
         [errorMessage]="'No data was found in the server'"
@@ -84,9 +84,4 @@
 
 <div class="right-corder-container">
     <button mat-fab color="primary" matTooltip="Add user" class="font-x-large" [routerLink]="'/users/add'">+</button>
-  <!-- <button class="btned btn-custom eq-ui-btn-fab"
-  title="Add user"
-  [routerLink]="'/users/add'">
-    <i class="fa fa-plus w-100 d-flex justify-content-center icon" aria-hidden="true"></i> 
-  </button> -->
 </div>

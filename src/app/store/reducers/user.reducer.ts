@@ -5,12 +5,14 @@ import { UserActions, UserActionTypes } from '../actions/user.actions';
 export interface State extends EntityState<User> {
   // additional entities state properties
   userInfoOnList: any;
+  loadingStatus: boolean;
 }
 
 export const adapter: EntityAdapter<User> = createEntityAdapter<User>();
 
 export const initialState: State = adapter.getInitialState({
   // additional entity state properties
+  loadingStatus: true,
   userInfoOnList: {},
 });
 
@@ -20,7 +22,7 @@ export function reducer(
 ): State {
   switch (action.type) {
     case UserActionTypes.AddUser: {
-      return state;
+      return {...state, loadingStatus: true};
       // return adapter.addOne(action.payload, state);
     }
 
@@ -29,7 +31,7 @@ export function reducer(
     }
 
     case UserActionTypes.AddUsers: {
-      return adapter.addMany(action.payload, state);
+      return adapter.addMany(action.payload, {...state, loadingStatus: false });
     }
 
     case UserActionTypes.UpsertUsers: {
@@ -37,7 +39,7 @@ export function reducer(
     }
 
     case UserActionTypes.UpdateUser: {
-      return state;
+      return {...state, loadingStatus: true};
       // return adapter.updateOne(action.payload.user, state);
     }
 
@@ -54,7 +56,7 @@ export function reducer(
     }
 
     case UserActionTypes.LoadUsers: {
-      return state;
+      return {...state, loadingStatus: true};
     }
 
     case UserActionTypes.ClearUsers: {
@@ -75,3 +77,4 @@ export const {
 } = adapter.getSelectors();
 
 export const getUseronListInfoState = (state: State) => state.userInfoOnList;
+export const getUserLoaderState = (state: State) => state.loadingStatus;

@@ -39,6 +39,7 @@ export class USerEffects {
     map(response => {
       // When is successful saved then route back to users list
       location.href = '#/users';
+      // this.
       return new UpdateNotification({message: 'User Successfull created', statusCode: 200});
     }),
     catchError(error => of(new UpdateNotification({
