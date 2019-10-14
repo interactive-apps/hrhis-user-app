@@ -1,18 +1,19 @@
 
       <div class="row">
-          <div class="card m-4 custom-width"
+          <mat-card matRipple class="custom-width m-4"
           *ngFor="let section of (userSections$ | async)">
               <div class="card-body unique-height" [routerLink]="'/' + section.id">
                 <h5 class="card-title">{{ section.name }}</h5>
                 <!-- <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6> -->
                 <p class="card-text">{{ section.description }}</p>
               </div>
-              <div class="card-footer">
-                <i class="fa fa-th-list ml-4 pull-right"
-                aria-hidden="true" title="View availble {{ section.name }}"
-                [routerLink]="'/' + section.id"></i>
-                <i class="fa fa-plus pull-right" aria-hidden="true" title="Add {{ section.name }}" [routerLink]="'/' + section.addLink"></i>
-              </div>
-            </div>
-      
+              <mat-card-actions>
+                <button mat-button [routerLink]="'/' + section.id" matTooltip="View availble {{ section.name }}">
+                  <i class="fa fa-th-list ml-4 pull-right font-x-large" aria-hidden="true"></i>
+                </button>
+                <button mat-button [routerLink]="'/' + section.addLink" matTooltip="Add {{ section.name }}">
+                  <i class="fa fa-plus pull-right font-large" aria-hidden="true"></i>
+                </button>
+              </mat-card-actions>
+          </mat-card>
       </div>

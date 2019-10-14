@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { getPageStateCurrentSelection, getUserSections, getNotificationInfo } from './store/selectors';
 import { ToggoleSection, LoadPageStates, LoadUserRoles } from './store/actions';
 import { Router } from '@angular/router';
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-root',
@@ -18,16 +19,15 @@ export class AppComponent implements OnInit {
   currentSectionSelection$: Observable<any>;
   showNotificationContents: any;
   showNotificationPopup: boolean;
-  constructor(private store: Store<AppState>, private router: Router) {
+  constructor(private store: Store<AppState>, private router: Router, private snackBar: MatSnackBar) {
     this.store.dispatch(new LoadPageStates());
     this.store.dispatch(new LoadUserRoles());
     this.userSections$ = this.store.select(getUserSections);
     this.currentSectionSelection$ = store.select(getPageStateCurrentSelection);
     this.store.select(getNotificationInfo).subscribe(notification => {
-      if (notification.statusCode === 200) {
-        this.showNotification(notification.message, true);
-      } else {
-        this.showNotification(notification.message, false, true);
+        // Trigger SnackaBar popUp view
+      if (notification.message) {
+        this.snackBar.open(notification.message, '', { duration: 4000 });
       }
     });
 

@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 import { LoadUsers, UpsertUser, DeleteUser } from 'src/app/store/actions';
 import { UserService } from '../../services';
 
+
 @Component({
   selector: 'app-users-list',
   templateUrl: './users-list.component.html',
@@ -22,7 +23,7 @@ export class UsersListComponent implements OnInit {
   itemsPerPage = 10;
   searchText = '';
 
-  constructor(private store: Store<AppState>, private userService: UserService) {
+  constructor(private store: Store<AppState>) {
     this.store.dispatch(new LoadUsers());
     this.users$ = this.store.select(getUsersList);
     this.usersLoader$ = this.store.select(getUserLoader);

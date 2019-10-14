@@ -58,6 +58,7 @@ export class AddUserComponent implements OnInit {
   ngOnInit() {
   }
 
+
   onchangeConfirmPassword(e) {
     if (this.comfirmPassword !== this.userInfo.password && !this.isEditUserMode) {
       // deny saving the user info
