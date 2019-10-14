@@ -18,10 +18,9 @@
             <thead>
                 <tr>
                     <th>Username</th>
-                    <th>First name</th>
-                    <th>Surname</th>
-                    <th>Roles</th>
-                    <th>Organisationunit</th>
+                    <th>Name</th>
+                    <!-- <th>Roles</th>
+                    <th>Organisationunit</th> -->
                     <th class="width-10">Actions</th>
                   </tr>
             </thead>
@@ -30,10 +29,9 @@
              filterBy: ['username', 'firstname', 'surname', 'roles', 'organisationunit'] : searchText |
              paginate: { itemsPerPage: itemsPerPage, currentPage: page})">
                <td> {{user.username}} </td>
-               <td> {{user.firstname}} </td>
-               <td> {{user.surname}} </td>
-               <td> {{user.roles ? user.roles : ''}} </td>
-               <td> {{user.organisationunit ? user.organisationunit : ''}} </td>
+               <td> {{user.firstname}} {{user.surname}} </td>
+               <!-- <td> {{user.roles ? user.roles : ''}} </td>
+               <td> {{user.organisationunit ? user.organisationunit : ''}} </td> -->
                <td class="d-flex"> 
                   <div matRipple class="btn btn-primary w-25" title="View user information" (click)="editUser(user)">
                       <i class="fa fa-info w-100 d-flex justify-content-center" aria-hidden="true"></i>

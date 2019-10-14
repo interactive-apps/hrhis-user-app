@@ -15,6 +15,7 @@ import { effects } from './store/effects';
 import { NgPipesModule } from 'ngx-pipes';
 import { HomeComponent } from './pages/home/home.component';
 import { SharedModule } from './shared/shared.module';
+import { HrisMenuModule } from '@iapps/hris-menu';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { SharedModule } from './shared/shared.module';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    HrisMenuModule,
     HttpClientModule,
     FormsModule,
     AppRoutingModule,
