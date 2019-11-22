@@ -12,7 +12,7 @@
   <mat-progress-bar mode="indeterminate" class="ml-2" *ngIf="(usersLoader$ | async)"></mat-progress-bar>
 
   <div class="row w-100 ml-2" *ngIf="(users$ | async).length > 0">
-      <mat-card class="w-100 mb-4">
+      <mat-card class="w-100 mb-4 p-0">
     <!-- <div class="card w-100 mb-4"> -->
         <table class="table table-hover table-visualization">
             <thead>
