@@ -31,6 +31,10 @@ export class UsersListComponent implements OnInit {
 
   ngOnInit() {}
 
+  trackByFn(index, item) {
+    return item.id;
+  }
+
   onUpdatePageSize(e) {
     this.itemsPerPage = e;
   }

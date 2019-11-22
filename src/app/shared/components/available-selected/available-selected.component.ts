@@ -22,7 +22,6 @@ export class AvailableSelectedComponent implements OnInit {
   ngOnInit() {}
 
   getAvailableItems(availableItems) {
-    console.log(JSON.stringify(this.selectedItems));
     const newAvailableItems = fromUtilHelpers.removeArrayObjects(availableItems ? availableItems : [],
       this.selectedItems ? this.selectedItems : [], 'id');
       // console.log(JSON.stringify(newAvailableItems));

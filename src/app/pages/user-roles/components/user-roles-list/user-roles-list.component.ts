@@ -26,6 +26,10 @@ export class UserRolesListComponent implements OnInit {
   ngOnInit() {
   }
 
+  trackByFn(index, item) {
+    return item.id;
+  }
+
   onUpdatePageSize(e) {
     this.itemsPerPage = e;
   }

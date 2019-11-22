@@ -23,7 +23,7 @@
             <tbody>
              <tr *ngFor="let role of ((userRoles$ | async) |
              filterBy: ['name'] : searchText |
-             paginate: { itemsPerPage: itemsPerPage, currentPage: page})">
+             paginate: { itemsPerPage: itemsPerPage, currentPage: page});trackBy: trackByFn;">
                <td> {{role.name}} </td>
                <td> {{role.description}} </td>
                <td> 
