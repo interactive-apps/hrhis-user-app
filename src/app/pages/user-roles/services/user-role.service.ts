@@ -10,22 +10,22 @@ export class UserRoleService {
   constructor(private httpClient: HttpClient) {}
 
   fetchUserRoles() {
-    const url = this.apiLink + '/userRole';
+    const url = this.apiLink + '/userRoles';
     return this.httpClient.get(url);
   }
 
   fetchUserRoleByUid(userRoleUid: string) {
-    const url = this.apiLink + '/userRole/' + userRoleUid;
+    const url = this.apiLink + '/userRoles/' + userRoleUid;
     return this.httpClient.get(url);
   }
 
   updateUserRoleByUid(userRoleUid: string, payload: any) {
-    const url = this.apiLink + '/userRole/' + userRoleUid;
+    const url = this.apiLink + '/userRoles/' + userRoleUid;
     return this.httpClient.post(url, payload);
   }
 
   deleteUserRoleByUid(userRoleUid: string) {
-    const url = this.apiLink + '/userRole/' + userRoleUid;
+    const url = this.apiLink + '/userRoles/' + userRoleUid;
     return this.httpClient.delete(url);
   }
 

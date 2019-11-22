@@ -17,8 +17,6 @@ export class AppComponent implements OnInit {
 
   userSections$: Observable<any>;
   currentSectionSelection$: Observable<any>;
-  showNotificationContents: any;
-  showNotificationPopup: boolean;
   constructor(private store: Store<AppState>, private router: Router, private snackBar: MatSnackBar) {
     this.store.dispatch(new LoadPageStates());
     this.store.dispatch(new LoadUserRoles());
@@ -45,21 +43,5 @@ export class AppComponent implements OnInit {
 
   toggoleSection(sectionId) {
     this.store.dispatch(new ToggoleSection(sectionId));
-  }
-
-  showNotification(notificationProperties: any, isSuccessful?: boolean,
-                   isError?: boolean, isOffline?: boolean, uploadOffline?: boolean ) {
-    this.showNotificationContents = {
-    // tslint:disable-next-line:object-literal-shorthand
-    notificationProperties: notificationProperties,
-    isSuccessful: isSuccessful ? isSuccessful : false,
-    isError: isError ? isError : false,
-    isOffline: isOffline ? isOffline : false,
-    uploadOffline: uploadOffline ? uploadOffline : false
-    };
-    this.showNotificationPopup = true;
-    setTimeout(() => {
-    this.showNotificationPopup = false;
-    }, 3000);
   }
 }

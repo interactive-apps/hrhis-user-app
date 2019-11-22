@@ -1,5 +1,6 @@
 <!-- <app-top-nav></app-top-nav> -->
-<ngx-dhis2-hris-menu></ngx-dhis2-hris-menu>
+<hris-menu></hris-menu>
+
 <div class="container-fluid" style="margin-top: 55px;">
   <div class="row">
     <div class="col-sm-2">
@@ -21,16 +22,4 @@
   </div>
 </div>
 
- <!-- Notification component -->
-<div *ngIf="showNotificationPopup && showNotificationContents.notificationProperties">
-  <app-notification
-    [notificationProperties]="showNotificationContents.notificationProperties"
-    [isSuccessful]="showNotificationContents.isSuccessful"
-    [isError]="showNotificationContents.isError"
-    [isOffline]="showNotificationContents.isOffline"
-    [uploadOffline]="showNotificationContents.uploadOffline"
-    [showNotification]="showNotificationPopup"
-  ></app-notification>
-</div>
-  <!-- End of Notification component -->
 

@@ -32,19 +32,29 @@
                <td> {{user.firstname}} {{user.surname}} </td>
                <!-- <td> {{user.roles ? user.roles : ''}} </td>
                <td> {{user.organisationunit ? user.organisationunit : ''}} </td> -->
-               <td class="d-flex"> 
-                  <div matRipple class="btn btn-primary w-25" title="View user information" (click)="editUser(user)">
-                      <i class="fa fa-info w-100 d-flex justify-content-center" aria-hidden="true"></i>
-                  </div>
+               <td> 
 
-                 <div matRipple class="btn btn-secondary w-25 mr-2 ml-2" title="Edit user information"
-                 (click)="editUser(user)">
-                    <i class="fa fa-pencil w-100 d-flex justify-content-center" aria-hidden="true"></i>
-                 </div>
-
-                 <div matRipple class="btn btn-danger w-25" title="Delete user information" (click)="deleteUser(user)">
-                    <i class="fa fa-trash-o w-100 d-flex justify-content-center" aria-hidden="true"></i>
-                 </div>
+                  <button
+                  mat-icon-button
+                  [matMenuTriggerFor]="menu"
+                  matTooltip="More actions on user">
+                <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+      
+                    <button mat-menu-item
+                    (click)="editUser(user)">
+                      <mat-icon>edit</mat-icon>
+                      <span>Edit</span>
+                    </button>
+      
+                    <button mat-menu-item
+                    (click)="deleteUser(user)">
+                      <mat-icon>delete</mat-icon>
+                      <span>Delete Record</span>
+                    </button>
+      
+                  </mat-menu>
 
                </td>
              </tr>
