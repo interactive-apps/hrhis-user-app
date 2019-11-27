@@ -32,9 +32,9 @@ export class UserService {
     return this.httpClient.post(url, payload);
   }
 
-  updateUserByUid(userUid: string, payload: any) {
-    const url = this.apiLink + '/users/' + userUid;
-    return this.httpClient.put(url, payload);
+  updateUserByUid(userInfo: any) {
+    const url = this.apiLink + '/users/' + userInfo.uid;
+    return this.httpClient.put(url, userInfo);
   }
 
   deleteUserByUid(userUid: string) {

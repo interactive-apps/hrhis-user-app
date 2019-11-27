@@ -20,11 +20,11 @@ export class AddUserComponent implements OnInit {
   // userRoles$: Observable<any>;
   userInfo: UserInfo = {
     id: '',
-    firstname: '', middlename: '',
+    firstName: '', middlename: '',
     surname: '', email: '',
     phone: '', username: '',
     jobtitle: '', password: '',
-    role: [], organisationunit: ''
+    userRoles: [], organisationunit: ''
   };
   comfirmPassword: string;
   isEditUserMode: boolean;
@@ -76,7 +76,7 @@ export class AddUserComponent implements OnInit {
   }
 
   saveUserInfo() {
-    if (this.userInfo.firstname && this.userInfo.surname) {
+    if (this.userInfo.firstName && this.userInfo.surname) {
       if (this.isEditUserMode) {
         console.log(this.userInfo);
         this.store.dispatch(new UpdateUser(this.userInfo));

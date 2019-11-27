@@ -52,10 +52,12 @@ export class USerEffects {
   @Effect()
   UpdateUser$ = this.actions$.pipe(
     ofType(UserActionTypes.UpdateUser),
-    switchMap((action: any) => {
-      const sanitizedUserPayload = fromHelpers.sanitizeExistingUserinfo(action.payload);
-      return this.userService.updateUserByUid(sanitizedUserPayload.uid, sanitizedUserPayload);
-    }),
+    withLatestFrom(
+      this.store.select(getUseronListInfo)
+    ),
+    switchMap(([action, singleUserInfo]: [FetchSingleUser, any]) =>
+      this.userService.updateUserByUid(singleUserInfo)
+    ),
     map(response => {
       // When is successful saved then route back to users list
       location.href = '#/users';
