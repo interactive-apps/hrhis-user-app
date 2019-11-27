@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { map, switchMap, mergeMap, withLatestFrom, tap, catchError } from 'rxjs/operators';
-import { UserActionTypes, AddUsers, UpdateNotification, AddUser } from '../actions';
+import { UserActionTypes, AddUsers, UpdateNotification, AddUser, FetchSingleUser, UpsertUser } from '../actions';
 import { of, Observable } from 'rxjs';
 import { AppState } from '../reducers';
 import { Store } from '@ngrx/store';
 import { UserService } from '../../pages/users/services';
 import * as fromHelpers from '../../shared/helpers';
+import { getUseronListInfo } from '../selectors';
 
 
 @Injectable()
@@ -74,6 +75,24 @@ export class USerEffects {
       // When is successful saved then route back to users list
       location.href = '#/users';
       return new UpdateNotification({message: 'User Successfull deleted', statusCode: 200});
+    }),
+    catchError(error => of(new UpdateNotification({
+      message: error.message, statusCode: error.statusCode
+      })
+    ))
+  );
+
+  @Effect()
+  fetchSingleUser$ = this.actions$.pipe(
+    ofType(UserActionTypes.FetchSingleUser),
+    withLatestFrom(
+      this.store.select(getUseronListInfo)
+      ),
+    switchMap(([action, singleUserInfo]: [FetchSingleUser, any]) =>
+    this.userService.fetchUserByUid(singleUserInfo.uid)),
+    map(response => {
+        // Update selected user with additional informations
+      return new UpsertUser(response);
     }),
     catchError(error => of(new UpdateNotification({
       message: error.message, statusCode: error.statusCode

@@ -13,7 +13,12 @@ export enum UserActionTypes {
   DeleteUser = '[User] Delete User',
   DeleteUsers = '[User] Delete Users',
   ClearUsers = '[User] Clear Users',
-  UpdateLoader = '[User] Update loader'
+  UpdateLoader = '[User] Update loader',
+  FetchSingleUser = '[User] Fetch Single User'
+}
+
+export class FetchSingleUser implements Action {
+  readonly type = UserActionTypes.FetchSingleUser;
 }
 
 export class UpdateLoader implements Action {
@@ -90,4 +95,5 @@ export type UserActions =
  | DeleteUser
  | DeleteUsers
  | ClearUsers
- | UpdateLoader;
+ | UpdateLoader
+ | FetchSingleUser;

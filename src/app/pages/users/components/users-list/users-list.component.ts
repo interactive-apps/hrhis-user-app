@@ -3,9 +3,9 @@ import { dummyUsers } from 'src/assets/config/dummy-users';
 import { FilterByPipe } from 'ngx-pipes';
 import { AppState } from 'src/app/store/reducers';
 import { Store } from '@ngrx/store';
-import { getUsersList, getNotificationInfo, getUserLoader } from 'src/app/store/selectors';
+import { getUsersList, getNotificationInfo, getUserLoader } from '../../../../store/selectors';
 import { Observable } from 'rxjs';
-import { LoadUsers, UpsertUser, DeleteUser } from 'src/app/store/actions';
+import { LoadUsers, UpsertUser, DeleteUser, FetchSingleUser } from '../../../../store/actions';
 import { UserService } from '../../services';
 
 
@@ -53,6 +53,7 @@ export class UsersListComponent implements OnInit {
   editUser(user) {
     this.store.dispatch(new UpsertUser(user));
     location.href = '#/users/edit/' + user.uid;
+    this.store.dispatch(new FetchSingleUser());
   }
 
   deleteUser(user) {
