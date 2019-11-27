@@ -12,7 +12,12 @@ export enum UserRoleActionTypes {
   UpdateUserRoles = '[UserRole] Update UserRoles',
   DeleteUserRole = '[UserRole] Delete UserRole',
   DeleteUserRoles = '[UserRole] Delete UserRoles',
-  ClearUserRoles = '[UserRole] Clear UserRoles'
+  ClearUserRoles = '[UserRole] Clear UserRoles',
+  FetchSingleUserRole = '[UserRole] Fetch Single UserRole'
+}
+
+export class FetchSingleUserRole implements Action {
+  readonly type = UserRoleActionTypes.FetchSingleUserRole;
 }
 
 export class LoadUserRoles implements Action {
@@ -46,7 +51,7 @@ export class UpsertUserRoles implements Action {
 export class UpdateUserRole implements Action {
   readonly type = UserRoleActionTypes.UpdateUserRole;
 
-  constructor(public payload: { userRole: Update<UserRole> }) {}
+  constructor(public payload: any) {}
 }
 
 export class UpdateUserRoles implements Action {
@@ -81,4 +86,5 @@ export type UserRoleActions =
  | UpdateUserRoles
  | DeleteUserRole
  | DeleteUserRoles
- | ClearUserRoles;
+ | ClearUserRoles
+ | FetchSingleUserRole;

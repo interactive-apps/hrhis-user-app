@@ -64,7 +64,7 @@ export function reducer(
     }
 
     case UserActionTypes.FetchSingleUser: {
-      return adapter.removeAll(state);
+      return state;
     }
 
     default: {

@@ -11,3 +11,8 @@ export const getUserRolesList = createSelector(
     getUserRoleState,
     fromUserRoleStateReducer.getUserRolesState
 );
+
+export const getSelectedUserRole = createSelector(
+    getUserRoleState,
+    fromUserRoleStateReducer.getSelectedUserRoleState
+);

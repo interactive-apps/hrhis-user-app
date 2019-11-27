@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { dummyUserroles } from 'src/assets/config/dummy-user-roles';
 import { Store } from '@ngrx/store';
-import { AppState } from 'src/app/store/reducers';
-import { getUserRolesList } from 'src/app/store/selectors';
+import { AppState } from '../../../../store/reducers';
+import { getUserRolesList } from '../../../../store/selectors';
 import { Observable } from 'rxjs';
-import { LoadUserRoles } from 'src/app/store/actions';
+import { LoadUserRoles, UpdateUserRole, FetchSingleUserRole } from '../../../../store/actions';
 
 @Component({
   selector: 'app-user-roles-list',
@@ -45,8 +45,10 @@ export class UserRolesListComponent implements OnInit {
     this.searchText = e ? e.target.value.trim() : this.searchText;
   }
 
-  addRole(e) {
-
+  editUserRole(userRole) {
+    this.store.dispatch(new UpdateUserRole(userRole));
+    location.href = '#/userRoles/edit/' + userRole.uid;
+    this.store.dispatch(new FetchSingleUserRole());
   }
 
 }

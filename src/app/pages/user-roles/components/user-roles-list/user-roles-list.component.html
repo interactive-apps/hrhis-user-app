@@ -35,7 +35,8 @@
                 </button>
                 <mat-menu #menu="matMenu">
       
-                    <button mat-menu-item>
+                    <button mat-menu-item
+                    (click)="editUserRole(role)">
                       <mat-icon>edit</mat-icon>
                       <span>Edit</span>
                     </button>
@@ -83,9 +84,5 @@
 </div>
 
 <div class="right-corder-container">
-  <button class="btned btn-custom eq-ui-btn-fab"
-  title="Add user role"
-  (click)="addRole($event)">
-    <i class="fa fa-plus w-100 d-flex justify-content-center icon" aria-hidden="true"></i> 
-  </button>
+  <button mat-fab color="primary" matTooltip="Add userRole" class="font-x-large" [routerLink]="'/userRoles/add'">+</button>
 </div>
