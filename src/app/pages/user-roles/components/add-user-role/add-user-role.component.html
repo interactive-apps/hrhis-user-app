@@ -1,3 +1,43 @@
-<p>
-  add-user-role works!
-</p>
+<div class="row w-100 mt-4 mb-4">
+  <mat-card class="w-100 mb-4">
+<!-- <div class="card w-100 mb-4"> -->
+
+  <div class="card-body">
+    <div class="col">
+      <div class="row mt-4">
+          <mat-form-field class="w-100">
+            <input matInput type="text" placeholder="Name *" [(ngModel)]="userInfo.username">
+          </mat-form-field>
+      </div>
+
+      <div class="row mt-4">
+          <mat-form-field class="w-100">
+            <input matInput type="text" placeholder="Description *" [(ngModel)]="userInfo.email">
+          </mat-form-field>
+      </div>
+
+      
+      <div class="row mt-4">
+        <div class="w-100">
+            <app-available-selected
+            [nameSpaceTitle]="'Authorities'"
+            [availableItems]="[]"
+            [selectedItems]="userInfo.userRoles"
+            (changesOnSelectedItems)="recieveSelectedItems($event)"
+            ></app-available-selected>
+        </div>
+          
+      </div>
+
+      <div class="row mt-4">
+        <!-- <div class="btn btn-primary" (click)="saveUserInfo()">Save</div> -->
+        <button mat-raised-button color="primary" (click)="saveUserInfo()">Save</button>
+        <button mat-raised-button class="ml-4" [routerLink]="'/' + (currentSectionSelection$ | async)">Cancel</button>
+        <!-- <div class="btn btn-light ml-4" [routerLink]="'/' + (currentSectionSelection$ | async)">Cancel</div> -->
+      </div>
+      
+    </div>
+  </div>
+<!-- </div> -->
+</mat-card>
+</div>

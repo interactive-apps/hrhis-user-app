@@ -14,6 +14,11 @@ export class UserRoleService {
     return this.httpClient.get(url);
   }
 
+  fetchAuthorities() {
+    const url = this.apiLink + '/userAuthorities';
+    return this.httpClient.get(url);
+  }
+
   fetchUserRoleByUid(userRoleUid: string) {
     const url = this.apiLink + '/userRoles/' + userRoleUid;
     return this.httpClient.get(url);

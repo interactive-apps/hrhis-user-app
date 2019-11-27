@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../../../store/reducers';
+import { getSelectedUserRole } from '../../../../store/selectors';
 
 @Component({
   selector: 'app-add-user-role',
@@ -7,7 +11,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddUserRoleComponent implements OnInit {
 
-  constructor() { }
+  selectedUserRole$: Observable<any>;
+  userRole: any = {
+    name: '',
+    description: '',
+    userAuthorities: []
+  };
+
+  constructor(private store: Store<AppState>) {
+    this.selectedUserRole$ = store.select(getSelectedUserRole);
+  }
 
   ngOnInit() {
   }

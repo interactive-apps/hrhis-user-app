@@ -30,7 +30,7 @@ export class AddUserComponent implements OnInit {
   isEditUserMode: boolean;
   userRoles: any = [];
 
-  constructor(private store: Store<AppState>, private userService: UserService, private router: Router) {
+  constructor(private store: Store<AppState>, private router: Router) {
     this.comfirmPassword = '';
     this.currentSectionSelection$ = store.select(getPageStateCurrentSelection);
     // this.userRoles$ = store.select(getUserRolesList);

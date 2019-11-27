@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { AppState } from '../../../../store/reducers';
 import { getUserRolesList } from '../../../../store/selectors';
 import { Observable } from 'rxjs';
-import { LoadUserRoles, UpdateUserRole, FetchSingleUserRole } from '../../../../store/actions';
+import { LoadUserRoles, UpdateUserRole, FetchSingleUserRole, FetchUserAuthorities } from '../../../../store/actions';
 
 @Component({
   selector: 'app-user-roles-list',
@@ -20,6 +20,7 @@ export class UserRolesListComponent implements OnInit {
 
   constructor(private store: Store<AppState>) {
     this.store.dispatch(new LoadUserRoles());
+    this.store.dispatch(new FetchUserAuthorities());
     this.userRoles$ = this.store.select(getUserRolesList);
   }
 
