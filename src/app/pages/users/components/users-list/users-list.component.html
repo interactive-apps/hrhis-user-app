@@ -30,7 +30,7 @@
              paginate: { itemsPerPage: itemsPerPage, currentPage: page});trackBy: trackByFn;">
                <td> {{user.username}} </td>
                <td> {{user.firstName}} {{user.surname}} </td>
-               <td> {{ user.lastLogin }}</td>
+               <td> {{ getProperDate(user.lastLogin) }}</td>
                <td> 
 
                   <button

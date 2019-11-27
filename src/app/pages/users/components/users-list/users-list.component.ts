@@ -64,4 +64,9 @@ export class UsersListComponent implements OnInit {
     }
   }
 
+  getProperDate(dateTime) {
+    const newDateValue = dateTime.split('T')[0] ? dateTime.split('T')[0] : dateTime;
+    return newDateValue;
+  }
+
 }
