@@ -6,13 +6,13 @@
     <div class="col">
       <div class="row mt-4">
           <mat-form-field class="w-100">
-            <input matInput type="text" placeholder="Name *" [(ngModel)]="userInfo.username">
+            <input matInput type="text" placeholder="Name" [(ngModel)]="userRole.name">
           </mat-form-field>
       </div>
 
       <div class="row mt-4">
           <mat-form-field class="w-100">
-            <input matInput type="text" placeholder="Description *" [(ngModel)]="userInfo.email">
+            <input matInput type="text" placeholder="Description" [(ngModel)]="userRole.description">
           </mat-form-field>
       </div>
 
@@ -21,8 +21,8 @@
         <div class="w-100">
             <app-available-selected
             [nameSpaceTitle]="'Authorities'"
-            [availableItems]="[]"
-            [selectedItems]="userInfo.userRoles"
+            [availableItems]="(authorities$ | async) ? (authorities$ | async) : []"
+            [selectedItems]="(selectedUserRole$ | async).userAuthorities ? (selectedUserRole$ | async).userAuthorities : []"
             (changesOnSelectedItems)="recieveSelectedItems($event)"
             ></app-available-selected>
         </div>

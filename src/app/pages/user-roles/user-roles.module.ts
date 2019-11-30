@@ -7,6 +7,7 @@ import { UserRolesRoutingModule } from './user-roles-routing.module';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NgPipesModule } from 'ngx-pipes';
 import { userRoleComponents } from './components';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { userRoleComponents } from './components';
     CommonModule,
     RouterModule,
     SharedModule,
+    FormsModule,
     UserRolesRoutingModule,
     NgxPaginationModule,
     NgPipesModule

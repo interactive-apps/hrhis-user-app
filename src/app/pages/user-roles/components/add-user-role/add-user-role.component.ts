@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../../store/reducers';
-import { getSelectedUserRole } from '../../../../store/selectors';
+import { getSelectedUserRole, getUserAuthorities, getPageStateCurrentSelection } from '../../../../store/selectors';
 
 @Component({
   selector: 'app-add-user-role',
@@ -11,7 +11,9 @@ import { getSelectedUserRole } from '../../../../store/selectors';
 })
 export class AddUserRoleComponent implements OnInit {
 
+  currentSectionSelection$: Observable<any>;
   selectedUserRole$: Observable<any>;
+  authorities$: Observable<any>;
   userRole: any = {
     name: '',
     description: '',
@@ -20,6 +22,12 @@ export class AddUserRoleComponent implements OnInit {
 
   constructor(private store: Store<AppState>) {
     this.selectedUserRole$ = store.select(getSelectedUserRole);
+    this.authorities$ = store.select(getUserAuthorities);
+    this.currentSectionSelection$ = store.select(getPageStateCurrentSelection);
+
+    store.select(getSelectedUserRole).subscribe(userRole => {
+      this.userRole = userRole ? userRole : [];
+  });
   }
 
   ngOnInit() {

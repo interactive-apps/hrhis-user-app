@@ -41,6 +41,8 @@
 .available-list {
   list-style-type: none;
   padding: 5px;
+  height: 250px;
+  overflow-y: auto;
 }
 
 .available-list > li > a {
