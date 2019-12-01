@@ -50,7 +50,7 @@ export class UserRolesEffects {
       this.store.select(getSelectedUserRole)
       ),
     switchMap(([action, singleUserRoleInfo]: [FetchSingleUserRole, any]) =>
-    this.userRoleService.fetchUserRoleByUid(singleUserRoleInfo.uid)),
+    this.userRoleService.fetchUserRoleByUid(singleUserRoleInfo.id)),
     map(response => {
         // Update selected userRole with additional informations
       return new UpdateUserRole(response);

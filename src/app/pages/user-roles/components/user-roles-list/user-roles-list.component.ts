@@ -48,7 +48,8 @@ export class UserRolesListComponent implements OnInit {
 
   editUserRole(userRole) {
     this.store.dispatch(new UpdateUserRole(userRole));
-    location.href = '#/userRoles/edit/' + userRole.uid;
+    console.log(userRole);
+    location.href = '#/userRoles/edit/' + userRole.id;
     this.store.dispatch(new FetchSingleUserRole());
   }
 

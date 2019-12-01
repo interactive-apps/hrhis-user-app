@@ -13,7 +13,7 @@ export function sanitizeNewUserinfo(userInfo) {
 
 export function sanitizeExistingUserinfo(userInfo) {
     const sanitizedUserInfo = {
-        uid: userInfo.uid ? userInfo.uid : '',
+        uid: userInfo.id ? userInfo.id : '',
         firstname: userInfo.firstname ? userInfo.firstname : '',
 	    surname: userInfo.username ? userInfo.surname : '',
 	    email: userInfo.email ? userInfo.email : '',

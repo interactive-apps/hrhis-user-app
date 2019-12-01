@@ -33,7 +33,7 @@ export class UserService {
   }
 
   updateUserByUid(userInfo: any) {
-    const url = this.apiLink + '/users/' + userInfo.uid;
+    const url = this.apiLink + '/users/' + userInfo.id;
     return this.httpClient.put(url, userInfo);
   }
 

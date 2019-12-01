@@ -52,7 +52,7 @@ export class UsersListComponent implements OnInit {
 
   editUser(user) {
     this.store.dispatch(new UpsertUser(user));
-    location.href = '#/users/edit/' + user.uid;
+    location.href = '#/users/edit/' + user.id;
     this.store.dispatch(new FetchSingleUser());
   }
 

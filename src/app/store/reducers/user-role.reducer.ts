@@ -7,6 +7,7 @@ export interface State extends EntityState<UserRole> {
   userRoles: any;
   selectedUserRole: any;
   userAuthorities: any;
+  loadingStatus: boolean;
 }
 
 export const adapter: EntityAdapter<UserRole> = createEntityAdapter<UserRole>();
@@ -15,7 +16,8 @@ export const initialState: State = adapter.getInitialState({
   // additional entity state properties
   userRoles: [],
   selectedUserRole: {},
-  userAuthorities: []
+  userAuthorities: [],
+  loadingStatus: true
 });
 
 export function reducer(
@@ -91,3 +93,4 @@ export const {
 export const getUserRolesState = (state: State) => state.userRoles;
 export const getUserAuthoritiesState = (state: State) => state.userAuthorities;
 export const getSelectedUserRoleState = (state: State) => state.selectedUserRole;
+export const getUserRoleLoadingState = (state: State) => state.loadingStatus;

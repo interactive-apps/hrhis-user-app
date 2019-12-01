@@ -72,7 +72,7 @@ export class USerEffects {
   @Effect()
   deleteUser$ = this.actions$.pipe(
     ofType(UserActionTypes.DeleteUser),
-    switchMap((action: any) => this.userService.deleteUserByUid(action.payload.uid ? action.payload.uid : '')),
+    switchMap((action: any) => this.userService.deleteUserByUid(action.payload.id ? action.payload.id : '')),
     map(response => {
       // When is successful saved then route back to users list
       location.href = '#/users';
@@ -91,7 +91,7 @@ export class USerEffects {
       this.store.select(getUseronListInfo)
       ),
     switchMap(([action, singleUserInfo]: [FetchSingleUser, any]) =>
-    this.userService.fetchUserByUid(singleUserInfo.uid)),
+    this.userService.fetchUserByUid(singleUserInfo.id)),
     map(response => {
         // Update selected user with additional informations
       return new UpsertUser(response);

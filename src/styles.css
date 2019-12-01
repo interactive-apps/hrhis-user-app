@@ -59,7 +59,7 @@
 }
 
 .border-color-grey {
-  border-color: #d3d1d3 !important;
+  border: 0.02px solid rgba(0, 0, 0, 0.125);
 }
 
 

@@ -6,7 +6,7 @@
         placeholder="Search {{nameSpaceTitle ? nameSpaceTitle: ''}}"
         (keyup)="searchingItems($event)">
 
-    <ul class="available-list border-color-grey">
+    <ul class="available-list border-color-grey mt-2">
       <li class="list-group-item-action" *ngFor="let item of (getAvailableItems(availableItems) |
       filterBy: ['name'] : searchText)"
       (click)="onSelectedItemChanges(item)">
