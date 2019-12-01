@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { map, switchMap, mergeMap, withLatestFrom, tap, catchError } from 'rxjs/operators';
-import { UserActionTypes, AddUsers, UpdateNotification, AddUser } from '../actions';
+import { UserActionTypes, AddUsers, UpdateNotification, AddUser, FetchSingleUser, UpsertUser } from '../actions';
 import { of, Observable } from 'rxjs';
 import { AppState } from '../reducers';
 import { Store } from '@ngrx/store';
 import { UserService } from '../../pages/users/services';
 import * as fromHelpers from '../../shared/helpers';
+import { getUseronListInfo } from '../selectors';
 
 
 @Injectable()
@@ -51,10 +52,12 @@ export class USerEffects {
   @Effect()
   UpdateUser$ = this.actions$.pipe(
     ofType(UserActionTypes.UpdateUser),
-    switchMap((action: any) => {
-      const sanitizedUserPayload = fromHelpers.sanitizeExistingUserinfo(action.payload);
-      return this.userService.updateUserByUid(sanitizedUserPayload.uid, sanitizedUserPayload);
-    }),
+    withLatestFrom(
+      this.store.select(getUseronListInfo)
+    ),
+    switchMap(([action, singleUserInfo]: [FetchSingleUser, any]) =>
+      this.userService.updateUserByUid(singleUserInfo)
+    ),
     map(response => {
       // When is successful saved then route back to users list
       location.href = '#/users';
@@ -69,11 +72,29 @@ export class USerEffects {
   @Effect()
   deleteUser$ = this.actions$.pipe(
     ofType(UserActionTypes.DeleteUser),
-    switchMap((action: any) => this.userService.deleteUserByUid(action.payload.uid ? action.payload.uid : '')),
+    switchMap((action: any) => this.userService.deleteUserByUid(action.payload.id ? action.payload.id : '')),
     map(response => {
       // When is successful saved then route back to users list
       location.href = '#/users';
       return new UpdateNotification({message: 'User Successfull deleted', statusCode: 200});
+    }),
+    catchError(error => of(new UpdateNotification({
+      message: error.message, statusCode: error.statusCode
+      })
+    ))
+  );
+
+  @Effect()
+  fetchSingleUser$ = this.actions$.pipe(
+    ofType(UserActionTypes.FetchSingleUser),
+    withLatestFrom(
+      this.store.select(getUseronListInfo)
+      ),
+    switchMap(([action, singleUserInfo]: [FetchSingleUser, any]) =>
+    this.userService.fetchUserByUid(singleUserInfo.id)),
+    map(response => {
+        // Update selected user with additional informations
+      return new UpsertUser(response);
     }),
     catchError(error => of(new UpdateNotification({
       message: error.message, statusCode: error.statusCode

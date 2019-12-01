@@ -5,13 +5,19 @@ import { UserRoleActions, UserRoleActionTypes } from '../actions/user-role.actio
 export interface State extends EntityState<UserRole> {
   // additional entities state properties
   userRoles: any;
+  selectedUserRole: any;
+  userAuthorities: any;
+  loadingStatus: boolean;
 }
 
 export const adapter: EntityAdapter<UserRole> = createEntityAdapter<UserRole>();
 
 export const initialState: State = adapter.getInitialState({
   // additional entity state properties
-  userRoles: []
+  userRoles: [],
+  selectedUserRole: {},
+  userAuthorities: [],
+  loadingStatus: true
 });
 
 export function reducer(
@@ -24,11 +30,11 @@ export function reducer(
     }
 
     case UserRoleActionTypes.UpsertUserRole: {
-      return adapter.upsertOne(action.payload.userRole, state);
+      return {...state, selectedUserRole: action.payload};
     }
 
     case UserRoleActionTypes.AddUserRoles: {
-      return {...state, userRoles: action.payload };
+      return {...state, userRoles: action.payload, loadingStatus: false};
     }
 
     case UserRoleActionTypes.UpsertUserRoles: {
@@ -36,7 +42,7 @@ export function reducer(
     }
 
     case UserRoleActionTypes.UpdateUserRole: {
-      return adapter.updateOne(action.payload.userRole, state);
+      return state;
     }
 
     case UserRoleActionTypes.UpdateUserRoles: {
@@ -52,11 +58,23 @@ export function reducer(
     }
 
     case UserRoleActionTypes.LoadUserRoles: {
-      return state;
+      return {...state, loadingStatus: true};
     }
 
     case UserRoleActionTypes.ClearUserRoles: {
       return adapter.removeAll(state);
+    }
+
+    case UserRoleActionTypes.FetchSingleUserRole: {
+      return state;
+    }
+
+    case UserRoleActionTypes.FetchUserAuthorities: {
+      return state;
+    }
+
+    case UserRoleActionTypes.AddUserAuthorities: {
+      return {...state, userAuthorities: action.payload };
     }
 
     default: {
@@ -73,3 +91,6 @@ export const {
 } = adapter.getSelectors();
 
 export const getUserRolesState = (state: State) => state.userRoles;
+export const getUserAuthoritiesState = (state: State) => state.userAuthorities;
+export const getSelectedUserRoleState = (state: State) => state.selectedUserRole;
+export const getUserRoleLoadingState = (state: State) => state.loadingStatus;

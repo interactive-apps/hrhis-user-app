@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { dummyUserroles } from 'src/assets/config/dummy-user-roles';
 import { Store } from '@ngrx/store';
-import { AppState } from 'src/app/store/reducers';
-import { getUserRolesList } from 'src/app/store/selectors';
+import { AppState } from '../../../../store/reducers';
+import { getUserRolesList, getUserRoleLoading } from '../../../../store/selectors';
 import { Observable } from 'rxjs';
-import { LoadUserRoles } from 'src/app/store/actions';
+import { FetchSingleUserRole, UpsertUserRole } from '../../../../store/actions';
 
 @Component({
   selector: 'app-user-roles-list',
@@ -14,16 +13,21 @@ import { LoadUserRoles } from 'src/app/store/actions';
 export class UserRolesListComponent implements OnInit {
 
   userRoles$: Observable<any>;
+  userRoleLoading$: Observable<any>;
   page = 1;
   itemsPerPage = 10;
   searchText = '';
 
   constructor(private store: Store<AppState>) {
-    this.store.dispatch(new LoadUserRoles());
+    this.userRoleLoading$ = this.store.select(getUserRoleLoading);
     this.userRoles$ = this.store.select(getUserRolesList);
   }
 
   ngOnInit() {
+  }
+
+  trackByFn(index, item) {
+    return item.id;
   }
 
   onUpdatePageSize(e) {
@@ -41,8 +45,10 @@ export class UserRolesListComponent implements OnInit {
     this.searchText = e ? e.target.value.trim() : this.searchText;
   }
 
-  addRole(e) {
-
+  editUserRole(userRole) {
+    this.store.dispatch(new UpsertUserRole(userRole));
+    location.href = '#/userRoles/edit/' + userRole.id;
+    this.store.dispatch(new FetchSingleUserRole());
   }
 
 }

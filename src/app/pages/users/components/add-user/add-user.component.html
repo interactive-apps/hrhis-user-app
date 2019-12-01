@@ -43,7 +43,7 @@
 
         <div class="row mt-4">
             <mat-form-field class="w-100">
-              <input matInput type="text" placeholder="First Name *" [(ngModel)]="userInfo.firstname">
+              <input matInput type="text" placeholder="First Name *" [(ngModel)]="userInfo.firstName">
             </mat-form-field>
         </div>
 
@@ -58,7 +58,7 @@
               <app-available-selected
               [nameSpaceTitle]="'User Roles'"
               [availableItems]="userRoles"
-              [selectedItems]="userInfo.role"
+              [selectedItems]="userInfo.userRoles"
               (changesOnSelectedItems)="recieveSelectedItems($event)"
               ></app-available-selected>
           </div>

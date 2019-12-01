@@ -4,7 +4,7 @@ export interface User {
 
 export interface UserInfo {
   id: string;
-  firstname: string;
+  firstName: string;
   middlename: string;
   surname: string;
   email: string;
@@ -12,15 +12,15 @@ export interface UserInfo {
   jobtitle: string;
   username: string;
   password: string;
-  role: any;
+  userRoles: any;
   organisationunit: any;
 }
 
 export const InitUserInfo = {
   id: '',
-  firstname: '', middlename: '',
+  firstName: '', middlename: '',
   surname: '', email: '',
   phone: '', username: '',
   jobtitle: '', password: '',
-  role: '', organisationunit: ''
+  userRoles: '', organisationunit: ''
 };

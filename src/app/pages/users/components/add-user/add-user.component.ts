@@ -20,17 +20,17 @@ export class AddUserComponent implements OnInit {
   // userRoles$: Observable<any>;
   userInfo: UserInfo = {
     id: '',
-    firstname: '', middlename: '',
+    firstName: '', middlename: '',
     surname: '', email: '',
     phone: '', username: '',
     jobtitle: '', password: '',
-    role: [], organisationunit: ''
+    userRoles: [], organisationunit: ''
   };
   comfirmPassword: string;
   isEditUserMode: boolean;
   userRoles: any = [];
 
-  constructor(private store: Store<AppState>, private userService: UserService, private router: Router) {
+  constructor(private store: Store<AppState>, private router: Router) {
     this.comfirmPassword = '';
     this.currentSectionSelection$ = store.select(getPageStateCurrentSelection);
     // this.userRoles$ = store.select(getUserRolesList);
@@ -68,17 +68,13 @@ export class AddUserComponent implements OnInit {
   }
 
   recieveSelectedItems(items) {
-    const rolesSelected = (items.selectemItems || []).map(role => {
-      return {id: role.id, name: role.name};
-    });
     this.userRoles = items.availableItems ? items.availableItems : [];
-    this.store.dispatch(new UpsertUser({...this.userInfo, role: items.selectemItems ? items.selectemItems : []}));
+    this.store.dispatch(new UpsertUser({...this.userInfo, role: items.selectedItems ? items.selectedItems : []}));
   }
 
   saveUserInfo() {
-    if (this.userInfo.firstname && this.userInfo.surname) {
+    if (this.userInfo.firstName && this.userInfo.surname) {
       if (this.isEditUserMode) {
-        console.log(this.userInfo);
         this.store.dispatch(new UpdateUser(this.userInfo));
       } else {
         if (this.comfirmPassword !== this.userInfo.password) {

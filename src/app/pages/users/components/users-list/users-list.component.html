@@ -19,19 +19,18 @@
                 <tr>
                     <th>Username</th>
                     <th>Name</th>
-                    <!-- <th>Roles</th>
-                    <th>Organisationunit</th> -->
+                    <!-- <th>Roles</th> -->
+                    <th>Last Login</th>
                     <th class="width-10">Actions</th>
                   </tr>
             </thead>
             <tbody>
              <tr *ngFor="let user of ((users$ | async) |
-             filterBy: ['username', 'firstname', 'surname', 'roles', 'organisationunit'] : searchText |
-             paginate: { itemsPerPage: itemsPerPage, currentPage: page})">
+             filterBy: ['username', 'firstName', 'surname', 'roles', 'organisationunit'] : searchText |
+             paginate: { itemsPerPage: itemsPerPage, currentPage: page});trackBy: trackByFn;">
                <td> {{user.username}} </td>
-               <td> {{user.firstname}} {{user.surname}} </td>
-               <!-- <td> {{user.roles ? user.roles : ''}} </td>
-               <td> {{user.organisationunit ? user.organisationunit : ''}} </td> -->
+               <td> {{user.firstName}} {{user.surname}} </td>
+               <td> {{ getProperDate(user.lastLogin) }}</td>
                <td> 
 
                   <button

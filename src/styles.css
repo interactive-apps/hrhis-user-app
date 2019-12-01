@@ -41,6 +41,8 @@
 .available-list {
   list-style-type: none;
   padding: 5px;
+  height: 250px;
+  overflow-y: auto;
 }
 
 .available-list > li > a {
@@ -55,6 +57,31 @@
 .available-list > li > a:hover {
   background-color: #dddddd;
 }
+
+.border-color-grey {
+  border: 0.02px solid rgba(0, 0, 0, 0.125);
+}
+
+
+/* Modify Scor-bar CSS
+ - WebKit-based browsers (such as Chrome and Safari)
+*/
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-button {
+  background: #f1f1f1;
+  /* background:#888; */
+}
+::-webkit-scrollbar-track-piece {
+  background: #f1f1f1;
+  /* #f1f1f1 */
+}
+::-webkit-scrollbar-thumb {
+  background:#cccccc;
+}
+/* Modify Scor-bar CSS */
 
 /**
  * Change animation duration
