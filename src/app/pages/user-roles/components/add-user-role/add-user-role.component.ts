@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../../store/reducers';
 import { getSelectedUserRole, getUserAuthorities, getPageStateCurrentSelection } from '../../../../store/selectors';
+import { UpdateUserRole } from 'src/app/store/actions';
 
 @Component({
   selector: 'app-add-user-role',
@@ -31,6 +32,13 @@ export class AddUserRoleComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  recieveSelectedItems(items) {
+    const rolesSelected = (items.selectemItems || []).map(role => {
+      return {id: role.id, name: role.name};
+    });
+    this.store.dispatch(new UpdateUserRole({...this.userRole, userAuthorities: items.selectemItems ? items.selectemItems : []}));
   }
 
 }

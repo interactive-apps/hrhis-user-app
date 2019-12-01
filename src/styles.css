@@ -58,6 +58,31 @@
   background-color: #dddddd;
 }
 
+.border-color-grey {
+  border-color: #d3d1d3 !important;
+}
+
+
+/* Modify Scor-bar CSS
+ - WebKit-based browsers (such as Chrome and Safari)
+*/
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-button {
+  background: #f1f1f1;
+  /* background:#888; */
+}
+::-webkit-scrollbar-track-piece {
+  background: #f1f1f1;
+  /* #f1f1f1 */
+}
+::-webkit-scrollbar-thumb {
+  background:#cccccc;
+}
+/* Modify Scor-bar CSS */
+
 /**
  * Change animation duration
  */
