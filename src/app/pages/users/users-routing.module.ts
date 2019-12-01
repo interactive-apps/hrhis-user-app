@@ -19,7 +19,7 @@ const usersRoutes: Routes = [
     {
       path: 'edit/:id',
       component: AddUserComponent
-    },
+    }
   ];
 
 @NgModule({

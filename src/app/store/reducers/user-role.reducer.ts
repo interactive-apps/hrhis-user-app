@@ -30,7 +30,7 @@ export function reducer(
     }
 
     case UserRoleActionTypes.UpsertUserRole: {
-      return adapter.upsertOne(action.payload.userRole, state);
+      return {...state, selectedUserRole: action.payload};
     }
 
     case UserRoleActionTypes.AddUserRoles: {
@@ -42,7 +42,7 @@ export function reducer(
     }
 
     case UserRoleActionTypes.UpdateUserRole: {
-      return {...state, selectedUserRole: action.payload};
+      return state;
     }
 
     case UserRoleActionTypes.UpdateUserRoles: {

@@ -61,4 +61,40 @@ export class UserRolesEffects {
     ))
   );
 
+  @Effect()
+  addUserRole$ = this.actions$.pipe(
+    ofType(UserRoleActionTypes.AddUserRole),
+    switchMap((action: any) => this.userRoleService.addUserRole(action.payload)),
+    map(response => {
+      // When is successful saved then route back to userRoles list
+      location.href = '#/userRoles';
+      // this.
+      return new UpdateNotification({message: 'User Role Successfull created', statusCode: 200});
+    }),
+    catchError(error => of(new UpdateNotification({
+      message: error.message, statusCode: error.statusCode
+      })
+    ))
+  );
+
+  @Effect()
+  UpdateUserRole$ = this.actions$.pipe(
+    ofType(UserRoleActionTypes.UpdateUserRole),
+    withLatestFrom(
+      this.store.select(getSelectedUserRole)
+    ),
+    switchMap(([action, singleUserRoleInfo]: [UpdateUserRole, any]) =>
+      this.userRoleService.updateUserRoleByUid(singleUserRoleInfo)
+    ),
+    map(response => {
+      // When is successful saved then route back to users list
+      location.href = '#/userRoles';
+      return new UpdateNotification({message: 'User Role Successfull updated', statusCode: 200});
+    }),
+    catchError(error => of(new UpdateNotification({
+      message: error.message, statusCode: error.statusCode
+      })
+    ))
+  );
+
 }

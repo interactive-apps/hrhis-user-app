@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { dummyUserroles } from 'src/assets/config/dummy-user-roles';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../../store/reducers';
 import { getUserRolesList, getUserRoleLoading } from '../../../../store/selectors';
 import { Observable } from 'rxjs';
-import { UpdateUserRole, FetchSingleUserRole } from '../../../../store/actions';
+import { FetchSingleUserRole, UpsertUserRole } from '../../../../store/actions';
 
 @Component({
   selector: 'app-user-roles-list',
@@ -47,8 +46,7 @@ export class UserRolesListComponent implements OnInit {
   }
 
   editUserRole(userRole) {
-    this.store.dispatch(new UpdateUserRole(userRole));
-    console.log(userRole);
+    this.store.dispatch(new UpsertUserRole(userRole));
     location.href = '#/userRoles/edit/' + userRole.id;
     this.store.dispatch(new FetchSingleUserRole());
   }

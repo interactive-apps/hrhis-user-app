@@ -68,11 +68,8 @@ export class AddUserComponent implements OnInit {
   }
 
   recieveSelectedItems(items) {
-    const rolesSelected = (items.selectemItems || []).map(role => {
-      return {id: role.id, name: role.name};
-    });
     this.userRoles = items.availableItems ? items.availableItems : [];
-    this.store.dispatch(new UpsertUser({...this.userInfo, role: items.selectemItems ? items.selectemItems : []}));
+    this.store.dispatch(new UpsertUser({...this.userInfo, role: items.selectedItems ? items.selectedItems : []}));
   }
 
   saveUserInfo() {
