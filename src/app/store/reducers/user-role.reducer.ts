@@ -34,7 +34,7 @@ export function reducer(
     }
 
     case UserRoleActionTypes.AddUserRoles: {
-      return {...state, userRoles: action.payload };
+      return {...state, userRoles: action.payload, loadingStatus: false};
     }
 
     case UserRoleActionTypes.UpsertUserRoles: {
@@ -58,7 +58,7 @@ export function reducer(
     }
 
     case UserRoleActionTypes.LoadUserRoles: {
-      return state;
+      return {...state, loadingStatus: true};
     }
 
     case UserRoleActionTypes.ClearUserRoles: {

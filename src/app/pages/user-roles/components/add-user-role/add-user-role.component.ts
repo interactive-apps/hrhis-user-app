@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../../store/reducers';
 import { getSelectedUserRole, getUserAuthorities, getPageStateCurrentSelection } from '../../../../store/selectors';
-import { UpdateUserRole } from 'src/app/store/actions';
+import { UpdateUserRole, UpdateNotification } from '../../../../store/actions';
 
 @Component({
   selector: 'app-add-user-role',
@@ -27,7 +27,7 @@ export class AddUserRoleComponent implements OnInit {
     this.currentSectionSelection$ = store.select(getPageStateCurrentSelection);
 
     store.select(getSelectedUserRole).subscribe(userRole => {
-      this.userRole = userRole ? userRole : [];
+      this.userRole = Object.keys(userRole) ? userRole : this.userRole;
   });
   }
 
@@ -35,10 +35,20 @@ export class AddUserRoleComponent implements OnInit {
   }
 
   recieveSelectedItems(items) {
-    const rolesSelected = (items.selectemItems || []).map(role => {
-      return {id: role.id, name: role.name};
-    });
-    this.store.dispatch(new UpdateUserRole({...this.userRole, userAuthorities: items.selectemItems ? items.selectemItems : []}));
+    this.store.dispatch(new UpdateUserRole({
+      ...this.userRole,
+      userAuthorities: items.selectemItems ? items.selectemItems : []
+    }));
+  }
+
+  saveUserRole() {
+    if (this.userRole.name && this.userRole.userAuthorities.length > 0) {
+
+    } else {
+      this.store.dispatch(new UpdateNotification({
+        message: 'Please fill all mandatory fields.', statusCode: 500
+      }));
+    }
   }
 
 }

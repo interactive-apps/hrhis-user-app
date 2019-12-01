@@ -9,6 +9,8 @@
       </div>
   </div>
 
+  <mat-progress-bar mode="indeterminate" class="ml-2" *ngIf="(userRoleLoading$ | async)"></mat-progress-bar>
+
   <div class="row w-100 ml-2">
       <mat-card class="w-100 mb-4 p-0" *ngIf="(userRoles$ | async).length > 0">
     <!-- <div class="card w-100 mb-4" *ngIf="(userRoles$ | async).length > 0" > -->
@@ -73,7 +75,7 @@
   </div>
 
 
-  <div class="row w-100 ml-2" *ngIf="(userRoles$ | async).length < 1">
+  <div class="row w-100 ml-2" *ngIf="(userRoles$ | async).length < 1 && !(userRoleLoading$ | async)">
       <div class="w-100">
           <app-no-data-error
           [errorMessage]="'No data was found in the server'"

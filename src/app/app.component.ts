@@ -3,8 +3,10 @@ import { userSections } from 'src/assets/config/userSectionsConfig';
 import { AppState } from './store/reducers';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { getPageStateCurrentSelection, getUserSections, getNotificationInfo } from './store/selectors';
-import { ToggoleSection, LoadPageStates, LoadUserRoles } from './store/actions';
+import { getPageStateCurrentSelection, getUserSections,
+  getNotificationInfo } from './store/selectors';
+import { ToggoleSection, LoadPageStates, LoadUserRoles,
+  LoadUsers, FetchUserAuthorities } from './store/actions';
 import { Router } from '@angular/router';
 import {MatSnackBar} from '@angular/material';
 
@@ -18,8 +20,6 @@ export class AppComponent implements OnInit {
   userSections$: Observable<any>;
   currentSectionSelection$: Observable<any>;
   constructor(private store: Store<AppState>, private router: Router, private snackBar: MatSnackBar) {
-    this.store.dispatch(new LoadPageStates());
-    this.store.dispatch(new LoadUserRoles());
     this.userSections$ = this.store.select(getUserSections);
     this.currentSectionSelection$ = store.select(getPageStateCurrentSelection);
     this.store.select(getNotificationInfo).subscribe(notification => {
@@ -39,7 +39,12 @@ export class AppComponent implements OnInit {
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.store.dispatch(new LoadUsers());
+    this.store.dispatch(new LoadPageStates());
+    this.store.dispatch(new LoadUserRoles());
+    this.store.dispatch(new FetchUserAuthorities());
+  }
 
   toggoleSection(sectionId) {
     this.store.dispatch(new ToggoleSection(sectionId));

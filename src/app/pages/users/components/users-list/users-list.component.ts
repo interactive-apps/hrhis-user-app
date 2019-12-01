@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { dummyUsers } from 'src/assets/config/dummy-users';
 import { FilterByPipe } from 'ngx-pipes';
 import { AppState } from 'src/app/store/reducers';
 import { Store } from '@ngrx/store';
-import { getUsersList, getNotificationInfo, getUserLoader } from '../../../../store/selectors';
+import { getUsersList, getUserLoader } from '../../../../store/selectors';
 import { Observable } from 'rxjs';
-import { LoadUsers, UpsertUser, DeleteUser, FetchSingleUser } from '../../../../store/actions';
-import { UserService } from '../../services';
+import { UpsertUser, DeleteUser, FetchSingleUser } from '../../../../store/actions';
 
 
 @Component({
@@ -24,7 +22,6 @@ export class UsersListComponent implements OnInit {
   searchText = '';
 
   constructor(private store: Store<AppState>) {
-    this.store.dispatch(new LoadUsers());
     this.users$ = this.store.select(getUsersList);
     this.usersLoader$ = this.store.select(getUserLoader);
    }
