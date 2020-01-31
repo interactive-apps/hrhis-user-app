@@ -10,7 +10,7 @@ export class UserRoleService {
   constructor(private httpClient: HttpClient) {}
 
   fetchUserRoles() {
-    const url = this.apiLink + '/userRoles';
+    const url = this.apiLink + '/userRoles?paging=false';
     return this.httpClient.get(url);
   }
 

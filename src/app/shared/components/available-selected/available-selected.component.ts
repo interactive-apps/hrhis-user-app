@@ -24,7 +24,6 @@ export class AvailableSelectedComponent implements OnInit {
   getAvailableItems(availableItems) {
     const newAvailableItems = fromUtilHelpers.removeArrayObjects(availableItems ? availableItems : [],
       this.selectedItems ? this.selectedItems : [], 'id');
-      // console.log(JSON.stringify(newAvailableItems));
     this.availableItems = newAvailableItems;
     return newAvailableItems;
   }
