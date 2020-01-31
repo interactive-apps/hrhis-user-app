@@ -18,7 +18,7 @@ export class UserService {
   }
 
   fetchUsers() {
-    const url = this.apiLink + '/users';
+    const url = this.apiLink + '/users?paging=false';
     return this.httpClient.get(url);
   }
 
