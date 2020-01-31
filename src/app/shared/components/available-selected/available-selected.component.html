@@ -25,7 +25,8 @@
 
     <div class="col-sm min-height">
       <ul class="available-list border-color-grey list-group mt-2">
-        <li class="list-group-item-action list-group-item-action" *ngFor="let item of selectedItems">
+        <li class="list-group-item-action list-group-item-action" *ngFor="let item of selectedItems"
+        (click)="onRemoveSelected(item)">
           {{ item.name }}
         </li>
       </ul>

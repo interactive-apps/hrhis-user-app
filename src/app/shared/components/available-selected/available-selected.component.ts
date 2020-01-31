@@ -36,6 +36,13 @@ export class AvailableSelectedComponent implements OnInit {
     this.changesOnSelectedItems.emit({selectedItems: newselectedItems, availableItems: this.availableItems});
   }
 
+  onRemoveSelected(item) {
+    const oldSelected = this.selectedItems ? this.selectedItems : [];
+    const newSelected = fromUtilHelpers.removeArrayObjects(oldSelected, [item], 'id');
+    this.availableItems = fromUtilHelpers.removeArrayObjects(this.availableItems, newSelected, 'id');
+    this.changesOnSelectedItems.emit({selectedItems: newSelected, availableItems: this.availableItems});
+  }
+
   searchingItems(e) {
     if (e) {
       e.stopPropagation();
